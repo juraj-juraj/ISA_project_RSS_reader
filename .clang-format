@@ -1,0 +1,25 @@
+---
+IndentWidth: 2
+TabWidth: 2
+UseTab: Never
+Language: Cpp
+Standard: Cpp11
+BreakBeforeBraces: Allman
+ColumnLimit: 120
+PointerAlignment: Left
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpaceBeforeParens: Never
+AccessModifierOffset: -2
+AlignAfterOpenBracket: DontAlign
+BreakConstructorInitializers: AfterColon
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+AllowAllConstructorInitializersOnNextLine: false
+ConstructorInitializerIndentWidth: 2
+FixNamespaceComments: false
+IndentPPDirectives: AfterHash
+ContinuationIndentWidth: 2
+AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: false
+IndentCaseLabels: true
+

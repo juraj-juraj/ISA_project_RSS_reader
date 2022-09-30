@@ -1,0 +1,2 @@
+CompileFlags:
+  Add: [-Wno-inconsistent-missing-override, -Wno-overloaded-virtual]
