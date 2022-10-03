@@ -33,6 +33,7 @@ Checks: '*,
   -llvmlibc-*,
   -misc-definitions-in-headers,
   -modernize-use-trailing-return-type,
+  -Wimplicit-fallthrough=,
 
 WarningsAsErrors: ''
 HeaderFilterRegex: '.*'
