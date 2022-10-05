@@ -33,3 +33,9 @@ void ParserFunctor::isDirectory::operator()(std::string& value, std::vector<std:
     if(!std::filesystem::exists(value))
         throw feedreaderException::argumentParsing("Specified directory doesn't exist");
 }
+
+void ParserFunctor::positionalValue::operator()(std::string& value, std::vector<std::string>::iterator& actualValue,
+  const std::vector<std::string>::iterator& /*end*/)
+{
+    value = std::move(*actualValue);
+}

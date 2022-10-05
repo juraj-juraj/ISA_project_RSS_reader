@@ -19,13 +19,23 @@ enum class degroupStates
   value
 };
 
-class ValueParserSetup
+class ParserSetup
 {
 public:
 
-    ValueParserSetup(std::shared_ptr<ParameterContainer>& container) : mContainer(container)
+    ParserSetup(std::shared_ptr<ParameterContainer>& container) : mContainer(container) {};
+
+protected:
+    std::shared_ptr<ParameterContainer> mContainer;
+};
+
+class ValueParserSetup : public ParserSetup
+{
+public:
+
+    ValueParserSetup(std::shared_ptr<ParameterContainer>& container) : ParserSetup(container)
     {
-        withValue();
+        mContainer->addParser(std::make_shared<ParserFunctor::withValue>());
     };
 
     ValueParserSetup& setDefaultValue(std::string value);
@@ -34,21 +44,24 @@ public:
 
     ValueParserSetup& isFile();
 
-protected:
-    void withValue();
-
 private:
-    std::shared_ptr<ParameterContainer> mContainer;
+    using ParserSetup::ParserSetup;
 };
 
-class ParserSetup
+class PositionalParserSetup : ParserSetup
 {
 public:
 
-    ParserSetup(std::shared_ptr<ParameterContainer>& container) : mContainer(container) {};
+    PositionalParserSetup(std::shared_ptr<ParameterContainer>& container) : ParserSetup(container)
+    {
+        mContainer->addParser(std::make_shared<ParserFunctor::positionalValue>());
+    };
 
-private:
-    std::shared_ptr<ParameterContainer> mContainer;
+    PositionalParserSetup& setDefaultValue(std::string value);
+
+    PositionalParserSetup& isDirectory();
+
+    PositionalParserSetup& isFile();
 };
 
 
@@ -59,9 +72,11 @@ public:
 
     ValueParserSetup addValueParameter(const std::string& paramName);
 
-    ValueParserSetup addPositionalParameter(size_t position);
+    PositionalParserSetup addPositionalParameter(const std::string& paramName, size_t position);
 
     void parse(int argc,const char *argv[]);
+
+    void clear();
 
     [[nodiscard]] std::map<std::string, std::string> getValues();
 

@@ -1,13 +1,20 @@
 #include "parametercontainer.h"
+#include "utils/exceptions.h"
 
 
 
 void ParameterParser::ParameterContainer::parse(std::vector<std::string>::iterator &actualValue, const std::vector<std::string>::iterator &end)
 {
     mParsed = true;
-    for(const auto &parser : mParsers)
+    try {
+        for(const auto& parser : mParsers)
+        {
+            (*parser)(mValue, actualValue, end);
+        }
+    }
+    catch(const feedreaderException::argumentParsing &err)
     {
-        (*parser)(mValue, actualValue, end);
+        throw feedreaderException::argumentParsing("Argument %s : %s \n", mName.c_str(), err.what());
     }
 }
 
@@ -18,7 +25,12 @@ void ParameterParser::ParameterContainer::setDefaultValue(std::string value)
 
 std::string ParameterParser::ParameterContainer::getValue()
 {
-    return std::move(mValue);
+    return mValue;
+}
+
+std::string ParameterParser::ParameterContainer::getName()
+{
+    return mName;
 }
 
 bool ParameterParser::ParameterContainer::isValid()

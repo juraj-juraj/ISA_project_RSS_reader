@@ -1,5 +1,4 @@
 #include "parameterparser.h"
-#include "utils/utils.h"
 #include "utils/exceptions.h"
 
 #include <iterator>
@@ -8,25 +7,25 @@
 
 ParameterParser::ParserSetup ParameterParser::ParameterParser::addParameter(const std::string &paramName)
 {
-    auto tempContainer = std::make_shared<ParameterContainer>();
+    auto tempContainer = std::make_shared<ParameterContainer>(paramName);
     mKeyContainer.insert({paramName, tempContainer});
     return {tempContainer};
 }
 
 ParameterParser::ValueParserSetup ParameterParser::ParameterParser::addValueParameter(const std::string &paramName)
 {
-    auto tempContainer = std::make_shared<ParameterContainer>();
+    auto tempContainer = std::make_shared<ParameterContainer>(paramName);
     mKeyContainer.insert({paramName, tempContainer});
     ValueParserSetup parserSetup(tempContainer);
     return parserSetup;
 }
 
-ParameterParser::ValueParserSetup ParameterParser::ParameterParser::addPositionalParameter(size_t position)
+ParameterParser::PositionalParserSetup ParameterParser::ParameterParser::addPositionalParameter(const std::string& paramName, size_t position)
 {
-    auto tempContainer = std::make_shared<ParameterContainer>();
+    auto tempContainer = std::make_shared<ParameterContainer>(paramName);
     if(mPosContainer.size() < position)
         mPosContainer.resize(position);
-    mPosContainer.assign(position, tempContainer);
+    mPosContainer.insert(mPosContainer.begin()+position, tempContainer);
     return {tempContainer};
 }
 
@@ -34,30 +33,30 @@ void ParameterParser::ParameterParser::parse(int argc,const char *argv[])
 {
     std::vector<std::string> arguments(argv + 1, argv + argc);
     degroup(arguments);
-    auto argument = arguments.begin();
-    try
-    {
-        for(; argument != arguments.end(); argument++)
-        {
 
-            if(mKeyContainer.count(*argument))
-            {
-                mKeyContainer.at(*argument)->parse(argument, arguments.end());
-            }
-            else
-            {
-                if((*argument)[0] == '-')
-                    throw std::invalid_argument("Invalid argument");
-                if(mPosition >= mPosContainer.size())
-                    throw std::invalid_argument("Positional argument out of range");
-                mPosContainer[mPosition++]->parse(argument, arguments.end());
-            }
+    for(auto argument = arguments.begin(); argument != arguments.end(); argument++)
+    {
+
+        if(mKeyContainer.count(*argument))
+        {
+            mKeyContainer.at(*argument)->parse(argument, arguments.end());
+        }
+        else
+        {
+            if((*argument)[0] == '-')
+                throw feedreaderException::argumentParsing("Invalid argument: %s", (*argument).c_str());
+            if(mPosition >= mPosContainer.size())
+                throw feedreaderException::argumentParsing("Positional argument %s out of range", (*argument).c_str());
+            mPosContainer[mPosition++]->parse(argument, arguments.end());
         }
     }
-    catch(const feedreaderException::argumentParsing& err)
-    {
-        throw feedreaderException::argumentParsing("Argument %s : %s \n", (*argument).c_str(), err.what());
-    }
+}
+
+void ParameterParser::ParameterParser::clear()
+{
+    mKeyContainer.clear();
+    mPosContainer.clear();
+    mPosition = 0;
 }
 
 std::map<std::string, std::string> ParameterParser::ParameterParser::getValues()
@@ -67,6 +66,11 @@ std::map<std::string, std::string> ParameterParser::ParameterParser::getValues()
     {
         if(container->isValid())
             returnMap.insert({argName, container->getValue()});
+    }
+    for(const auto &container : mPosContainer)
+    {
+        if(container->isValid())
+            returnMap.insert({container->getName(), container->getValue()});
     }
     return returnMap;
 }
@@ -83,7 +87,7 @@ void ParameterParser::ParameterParser::degroup(std::vector<std::string>& argumen
     for(auto& argument : arguments)
     {
         state = degroupStates::begin;
-        for(size_t i = 0; i <= argument.size(); i++)
+        for(size_t i = 0; i < argument.size(); i++)
         {
             switch(state)
             {
@@ -103,20 +107,20 @@ void ParameterParser::ParameterParser::degroup(std::vector<std::string>& argumen
                         state = degroupStates::dashParse;
                 //fallthrough
                 case degroupStates::dashParse:
-                    if(argument[i] != '\0')
-                    {
-                        parsedArguments.emplace_back("-" + std::string(1, argument[i]));
-                    }
+                    parsedArguments.emplace_back("-" + std::string(1, argument[i]));
                     break;
                 case degroupStates::value:
-                    if(argument[i] == '\0')
-                        parsedArguments.emplace_back(argument);
+                    parsedArguments.emplace_back(argument);
+                    state = degroupStates::begin;
                     break;
             }
+            if(state == degroupStates::begin)
+                break;
         }
-        arguments.clear();
-        std::copy(parsedArguments.begin(), parsedArguments.end(), std::back_inserter(arguments));
     }
+    arguments.clear();
+    std::copy(parsedArguments.begin(), parsedArguments.end(), std::back_inserter(arguments));
+
 }
 
 ParameterParser::ValueParserSetup &ParameterParser::ValueParserSetup::setDefaultValue(std::string value)
@@ -137,7 +141,20 @@ ParameterParser::ValueParserSetup &ParameterParser::ValueParserSetup::isFile()
     return *this;
 }
 
-void ParameterParser::ValueParserSetup::withValue()
+ParameterParser::PositionalParserSetup &ParameterParser::PositionalParserSetup::setDefaultValue(std::string value)
 {
-    mContainer->addParser(std::make_shared<ParserFunctor::withValue>());
+    mContainer->setDefaultValue(std::move(value));
+    return *this;
+}
+
+ParameterParser::PositionalParserSetup &ParameterParser::PositionalParserSetup::isDirectory()
+{
+    mContainer->addParser(std::make_shared<ParserFunctor::isDirectory>());
+    return *this;
+}
+
+ParameterParser::PositionalParserSetup &ParameterParser::PositionalParserSetup::isFile()
+{
+    mContainer->addParser(std::make_shared<ParserFunctor::isFile>());
+    return *this;
 }
