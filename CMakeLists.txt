@@ -1,6 +1,7 @@
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required (VERSION 3.16)
 set (CMAKE_CXX_STANDARD 17)
 
+enable_testing()
 
 project("ISA_RSS_reader")
 
@@ -50,4 +51,4 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/src/include/)
 
 add_subdirectory (src)
-
+add_subdirectory (tests)
