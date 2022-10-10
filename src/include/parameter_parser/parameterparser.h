@@ -82,6 +82,8 @@ public:
 
     [[nodiscard]] bool argParsed(const std::string& argName) const;
 
+    [[nodiscard]] std::string getValue(const std::string& argname) const;
+
 protected:
 
     static void degroup(std::vector<std::string>& arguments);

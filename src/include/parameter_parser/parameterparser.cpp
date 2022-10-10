@@ -80,6 +80,21 @@ bool ParameterParser::ParameterParser::argParsed(const std::string& argName) con
     return (mKeyContainer.count(argName) && mKeyContainer.at(argName)->isValid());
 }
 
+std::string ParameterParser::ParameterParser::getValue(const std::string &argName) const
+{
+    if(mKeyContainer.count(argName))
+    {
+        if(mKeyContainer.at(argName)->isValid())
+            return mKeyContainer.at(argName)->getValue();
+    }
+    for(auto && container: mPosContainer)
+    {
+        if(container->isValid() && (container->getName() == argName))
+            return container->getValue();
+    }
+    return "";
+}
+
 void ParameterParser::ParameterParser::degroup(std::vector<std::string>& arguments)
 {
     degroupStates state;

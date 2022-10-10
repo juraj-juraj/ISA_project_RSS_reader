@@ -18,7 +18,7 @@ public:
 class withValue : public parseFunctorI
 {
 public:
-    void operator()(std::string &value, std::vector<std::string>::iterator& actualValue,const std::vector<std::string>::iterator& end) override;
+   void operator()(std::string &value, std::vector<std::string>::iterator& actualValue,const std::vector<std::string>::iterator& end) override;
 };
 
 class positionalValue : public parseFunctorI

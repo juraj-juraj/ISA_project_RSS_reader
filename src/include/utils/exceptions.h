@@ -27,5 +27,10 @@ class argumentParsing : public baseException
     using baseException::baseException;
 };
 
+class URLParsing : public baseException
+{
+    using baseException::baseException;
+};
+
 }
 

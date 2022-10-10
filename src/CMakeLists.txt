@@ -24,6 +24,14 @@ add_library(parameterParser
 )
 target_link_libraries(parameterParser PUBLIC feedreaderUtils)
 
+add_library(URLParser
+    include/urlParser/urlparser.h
+    include/urlParser/urlparser.cpp
+)
+
+target_link_libraries(URLParser PUBLIC feedreaderUtils)
 
 add_executable(feedreader ${SRC})
 target_link_libraries(feedreader PUBLIC parameterParser)
+target_link_libraries(feedreader PUBLIC URLParser)
+
