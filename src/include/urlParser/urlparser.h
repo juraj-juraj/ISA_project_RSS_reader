@@ -4,6 +4,8 @@
 #include <vector>
 #include <regex>
 
+#include "utils/logger.h"
+
 namespace urlParser
 {
 
@@ -28,29 +30,31 @@ public:
 class FileURLReader : public URLReaderI
 {
 public:
-    FileURLReader(std::string file);
+    FileURLReader(std::string& file, std::shared_ptr<Utils::logger> logger);
 
     [[nodiscard]] bool next(struct URLAddress &address) override;
 
 private:
     std::vector<std::string> mURLs;
     std::vector<std::string>::iterator mURLiterator;
+    std::shared_ptr<Utils::logger> mLogger;
 };
 
 class RawURLReader : public URLReaderI
 {
 public:
-    RawURLReader(std::string url): mURl(std::move(url)) {};
+    RawURLReader(std::string& url, std::shared_ptr<Utils::logger> logger);
 
     [[nodiscard]] bool next(struct URLAddress &address) override;
 private:
     std::string mURl;
+    std::shared_ptr<Utils::logger> mLogger;
 };
 
 class URLParser
 {
 public:
-    URLParser(std::string& URL, std::string& feedfile);
+    URLParser(std::string& URL, std::string& feedfile, std::shared_ptr<Utils::logger> logger);
 
     [[nodiscard]] bool next(struct URLAddress &address)
     {
@@ -59,6 +63,9 @@ public:
 
 private:
     std::unique_ptr<URLReaderI> mCallback;
+    std::shared_ptr<Utils::logger> mLogger;
 };
+
+void parseURL(const std::string&  URL, struct URLAddress& address);
 
 }

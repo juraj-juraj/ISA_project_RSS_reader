@@ -15,5 +15,5 @@ void mapEqual(std::map<key_t, val_t>& expected, std::map<key_t, val_t>& actual)
         ASSERT_TRUE(actual.count(key));
         ASSERT_EQ(actual[key], value);
     }
-}
+};
 }

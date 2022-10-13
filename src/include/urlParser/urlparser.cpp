@@ -10,41 +10,49 @@
 
 std::regex urlParser::txt_regex(R"(^((http)|(https))(\:\/\/)((www\.)?[a-zA-Z0-9\.\-\_]+[a-z]{1,8})(\:\d+)?(\/[^\ \t\?]*)?(\?\S+)?$)");
 
-namespace urlParser
+void urlParser::parseURL(const std::string&  URL, struct URLAddress& address)
 {
-    void parseURL(std::string&  URL, struct URLAddress& address)
-    {
-        std::string::iterator startURL = URL.begin();
-        std::string::iterator endURL = URL.end();
-        std::string::iterator endProtocol = std::find(startURL, endURL, ':');
-        std::string::iterator addressStart = endProtocol + 3; //skip ://
-        std::string::iterator addressEnd = std::find(addressStart, endURL, '/');
-        std::string::iterator portStart = std::find(addressStart, addressEnd, ':');
-        std::string::iterator pathEnd = std::find(addressEnd, endURL, '?');
-        address.protocol = std::string(startURL, endProtocol);
-        address.address = std::string(addressStart, addressEnd);
-        address.port = std::string(portStart, addressEnd);
-        address.path = std::string(addressEnd, pathEnd);
-        address.options = std::string(pathEnd, endURL);
-        address.original = std::move(URL);
-    }
+    std::string::const_iterator startURL = URL.begin();
+    std::string::const_iterator endURL = URL.end();
+    std::string::const_iterator endProtocol = std::find(startURL, endURL, ':');
+    std::string::const_iterator addressStart = endProtocol + 3; //skip ://
+    std::string::const_iterator addressEnd = std::find(addressStart, endURL, '/');
+    std::string::const_iterator optionsStart = std::find(addressStart, endURL, '?');
+    if(optionsStart < addressEnd)
+        addressEnd = optionsStart;
+    std::string::const_iterator portStart = std::find(addressStart, addressEnd, ':');
+
+    address.port = std::string((portStart!=addressEnd) ? portStart+1 : portStart, addressEnd);
+    address.path = std::string(addressEnd, optionsStart);
+    if(portStart != addressEnd)
+        addressEnd = std::find(addressStart, endURL, ':');
+    address.address = std::string(addressStart, addressEnd);
+    address.options = std::string(optionsStart, endURL);
+    address.protocol = std::string(startURL, endProtocol);
+    address.original = std::move(URL);
 }
 
-urlParser::URLParser::URLParser(std::string &URL, std::string &feedfile)
+urlParser::URLParser::URLParser(std::string &URL, std::string &feedfile, std::shared_ptr<Utils::logger> logger)
 {
+    mLogger = logger;
     if(!URL.empty() && !feedfile.empty())
         throw feedreaderException::URLParsing("Cannot submit url and feedfile at same time");
+    else if(URL.empty() && feedfile.empty())
+        throw feedreaderException::URLParsing("You have to submit feedfile or URL");
     if(!feedfile.empty())
-        mCallback = std::make_unique<urlParser::FileURLReader>(feedfile);
+        mCallback = std::make_unique<urlParser::FileURLReader>(feedfile, mLogger);
     else
-        mCallback = std::make_unique<urlParser::RawURLReader>(URL);
+        mCallback = std::make_unique<urlParser::RawURLReader>(URL, mLogger);
 }
 
-urlParser::FileURLReader::FileURLReader(std::string file)
+urlParser::FileURLReader::FileURLReader(std::string& file, std::shared_ptr<Utils::logger> logger)
 {
+    mLogger = logger;
     std::ifstream feedfile;
     try {
         feedfile.open(file);
+        if(feedfile.fail())
+            throw feedreaderException::URLParsing("Error cannot open file %s", file);
         std::stringstream buffer;
         buffer << feedfile.rdbuf();
         std::string contents(buffer.str());
@@ -64,13 +72,13 @@ urlParser::FileURLReader::FileURLReader(std::string file)
             if(std::regex_match(temp, txt_regex))
                 mURLs.push_back(std::move(temp));
             else
-                throw feedreaderException::URLParsing("Submitted URL %s is not valid", temp.c_str());
+                mLogger->errWrite("Submitted URL %s is not valid", temp.c_str());
         }
         mURLiterator = mURLs.begin();
     }
     catch (const std::ifstream::failure& e)
     {
-        throw feedreaderException::URLParsing("Cannot open file: %s ", file);
+        throw feedreaderException::URLParsing("Error working with file %s ", file);
     }
 
 }
@@ -84,10 +92,19 @@ bool urlParser::FileURLReader::next(struct URLAddress &address)
     return true;
 }
 
+urlParser::RawURLReader::RawURLReader(std::string &url, std::shared_ptr<Utils::logger> logger)
+{
+    if(!std::regex_match(url, txt_regex))
+        throw feedreaderException::URLParsing("Submitted URL %s is not valid", url.c_str());
+    mURl = url;
+    mLogger = logger;
+}
+
 bool urlParser::RawURLReader::next(URLAddress &address)
 {
     if(mURl.empty())
         return false;
     parseURL(mURl, address);
+    mURl.clear();
     return true;
 }

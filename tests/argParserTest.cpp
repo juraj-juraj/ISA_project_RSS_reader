@@ -99,3 +99,33 @@ TEST_F(parameterParserMock, TooMuchPositionalArgumentGiven)
     EXPECT_THROW(parser.parse(argc,  values), feedreaderException::argumentParsing);
 }
 
+TEST_F(parameterParserMock, GetSingleValue)
+{
+    const int argc = 5;
+    const char *values[argc] = {"program", "-aT", "-f", "file", "theUrl"};
+    parser.parse(argc,  values);
+
+    auto actualParsedValue = parser.getValue("-f");
+    ASSERT_EQ(actualParsedValue, "file");
+}
+
+TEST_F(parameterParserMock, GetSinglePositionalValue)
+{
+    const int argc = 5;
+    const char *values[argc] = {"program", "-aT", "-f", "file", "theUrl"};
+    parser.parse(argc,  values);
+
+    auto actualParsedValue = parser.getValue("URL");
+    ASSERT_EQ(actualParsedValue, "theUrl");
+}
+
+TEST_F(parameterParserMock, GetUnparsedValue)
+{
+    const int argc = 3;
+    const char *values[argc] = {"program", "-aT", "theUrl"};
+    parser.parse(argc,  values);
+
+    auto actualParsedValue = parser.getValue("-f");
+    ASSERT_EQ(actualParsedValue, "");
+}
+

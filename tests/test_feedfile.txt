@@ -1,0 +1,9 @@
+
+# FIT
+http://www.fit.vutbr.cz/news/news-rss.php
+#The register
+https://www.theregister.co.uk/headlines.atom
+https://www.theregister.co.uk/data_centre/headlines.atom
+
+#xkcd
+https://xkcd.com/atom.xml
