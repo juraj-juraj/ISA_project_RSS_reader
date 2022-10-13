@@ -13,7 +13,7 @@ int main(int argc, const char *argv[])
     parser.addParameter(AUTHOR_ARG);
     parser.addParameter(DATESHOW_ARG);
 
-    Utils::logger logger(std::cout);
+    Utils::logger logger(std::cout, std::cerr);
 
     try
     {
