@@ -32,7 +32,7 @@ void urlParser::parseURL(const std::string&  URL, struct URLAddress& address)
     address.original = std::move(URL);
 }
 
-urlParser::URLParser::URLParser(std::string &URL, std::string &feedfile, std::shared_ptr<Utils::logger> logger)
+urlParser::URLParser::URLParser(std::string URL, std::string feedfile, std::shared_ptr<Utils::logger> logger)
 {
     mLogger = logger;
     if(!URL.empty() && !feedfile.empty())
