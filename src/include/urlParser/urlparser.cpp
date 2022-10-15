@@ -32,7 +32,7 @@ void urlParser::parseURL(const std::string&  URL, struct URLAddress& address)
     address.original = std::move(URL);
 }
 
-urlParser::URLParser::URLParser(std::string &URL, std::string &feedfile, std::shared_ptr<Utils::logger> logger)
+urlParser::URLParser::URLParser(std::string URL, std::string feedfile, std::shared_ptr<Utils::logger> logger)
 {
     mLogger = logger;
     if(!URL.empty() && !feedfile.empty())
@@ -52,7 +52,7 @@ urlParser::FileURLReader::FileURLReader(std::string& file, std::shared_ptr<Utils
     try {
         feedfile.open(file);
         if(feedfile.fail())
-            throw feedreaderException::URLParsing("Error cannot open file %s", file);
+            throw feedreaderException::URLParsing("Cannot open file %s", file);
         std::stringstream buffer;
         buffer << feedfile.rdbuf();
         std::string contents(buffer.str());
@@ -72,13 +72,13 @@ urlParser::FileURLReader::FileURLReader(std::string& file, std::shared_ptr<Utils
             if(std::regex_match(temp, txt_regex))
                 mURLs.push_back(std::move(temp));
             else
-                mLogger->errWrite("Submitted URL %s is not valid", temp.c_str());
+                mLogger->errWrite("Error: Submitted URL %s is not valid", temp.c_str());
         }
         mURLiterator = mURLs.begin();
     }
     catch (const std::ifstream::failure& e)
     {
-        throw feedreaderException::URLParsing("Error working with file %s ", file);
+        throw feedreaderException::URLParsing("Feedfile '%s' is damaged", file);
     }
 
 }

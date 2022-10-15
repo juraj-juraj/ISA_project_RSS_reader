@@ -54,7 +54,7 @@ private:
 class URLParser
 {
 public:
-    URLParser(std::string& URL, std::string& feedfile, std::shared_ptr<Utils::logger> logger);
+    URLParser(std::string URL, std::string feedfile, std::shared_ptr<Utils::logger> logger);
 
     [[nodiscard]] bool next(struct URLAddress &address)
     {
@@ -62,6 +62,7 @@ public:
     }
 
 private:
+    URLParser();
     std::unique_ptr<URLReaderI> mCallback;
     std::shared_ptr<Utils::logger> mLogger;
 };
