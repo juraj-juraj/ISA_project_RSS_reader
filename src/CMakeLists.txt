@@ -29,9 +29,15 @@ add_library(URLParser
     include/urlParser/urlparser.cpp
 )
 
+add_library(feedDownloader
+    include/feed_downloader/feeddownloader.h
+    include/feed_downloader/feeddownloader.cpp
+)
+
 target_link_libraries(URLParser PUBLIC feedreaderUtils)
+target_link_libraries(feedDownloader PUBLIC feedreaderUtils ssl crypto)
 
 add_executable(feedreader ${SRC})
 target_link_libraries(feedreader PUBLIC parameterParser)
 target_link_libraries(feedreader PUBLIC URLParser)
-
+target_link_libraries(feedreader PUBLIC feedDownloader)
