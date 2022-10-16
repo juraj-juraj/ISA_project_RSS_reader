@@ -47,7 +47,8 @@ int main(int argc, const char *argv[])
 
         urlParser::URLParser urlGetter(argParser.getValue(URLPOS_ARG), argParser.getValue(FEEDFILE_ARG), logger);
         struct urlParser::URLAddress address;
-        feeddownloader::feedDownloader downloader (argParser.getValue(CERTDIR_ARG), argParser.getValue(CERTFILE_ARG));
+        feeddownloader::feedDownloader downloader;
+        downloader.setupCertificate(argParser.getValue(CERTDIR_ARG), argParser.getValue(CERTFILE_ARG));
         std::string xmlFeed;
         while(urlGetter.next(address))
         {

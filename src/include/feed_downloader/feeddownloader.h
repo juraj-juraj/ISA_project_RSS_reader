@@ -28,11 +28,15 @@ constexpr const char* DEFAULT_CERT_DIR = "/etc/ssl/certs";
 class feedDownloader
 {
 public:
-    feedDownloader(std::string certDir, std::string certFile);
+    feedDownloader();
+
+    void setupCertificate(std::string certDir, std::string certFile);
 
     ~feedDownloader()
     {
         SSL_CTX_free(mCtx);
+        if(mWeb != NULL)
+            BIO_free_all(mWeb);
     }
 
     std::string& download(struct urlParser::URLAddress& address);

@@ -3,26 +3,54 @@
 #include "feeddownloader.h"
 #include "utils/exceptions.h"
 
-feeddownloader::feedDownloader::feedDownloader(std::string certDir, std::string certFile)
+feeddownloader::feedDownloader::feedDownloader()
+{
+//    long res = 1;
+//    SSL_library_init();
+//    const SSL_METHOD* method = SSLv23_method();
+//    if(method == NULL)
+//        throw feedreaderException::downloader("Cannot setup ssl method");
+
+//    mCtx = SSL_CTX_new(method);
+//    if(mCtx == NULL)
+//        throw feedreaderException::downloader("Cannot create ssl context");
+
+//    SSL_CTX_set_verify_depth(mCtx, 4);
+
+//    const long flags = SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3 | SSL_OP_NO_COMPRESSION;
+//    SSL_CTX_set_options(mCtx, flags);
+
+//    if(!certDir.empty() || !certFile.empty())
+//        ;
+//        //res = SSL_CTX_load_verify_locations(mCtx, certFile.c_str(), certDir.c_str());
+//    else
+//        res = SSL_CTX_load_verify_locations(mCtx, NULL, "/etc/ssl/certs/");
+//        //res = SSL_CTX_set_default_verify_paths(mCtx);
+
+//    if(res != 1)
+//        throw feedreaderException::downloader("Cannot load certificate(s)");
+}
+
+void feeddownloader::feedDownloader::setupCertificate(std::string certDir, std::string certFile)
 {
     long res = 1;
     SSL_library_init();
     const SSL_METHOD* method = SSLv23_method();
-    if(!(NULL != method))
+    if(method == NULL)
         throw feedreaderException::downloader("Cannot setup ssl method");
 
     mCtx = SSL_CTX_new(method);
-    if(!(mCtx != NULL))
+    if(mCtx == NULL)
         throw feedreaderException::downloader("Cannot create ssl context");
 
     SSL_CTX_set_verify_depth(mCtx, 4);
 
-    /* Cannot fail ??? */
     const long flags = SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3 | SSL_OP_NO_COMPRESSION;
     SSL_CTX_set_options(mCtx, flags);
 
     if(!certDir.empty() || !certFile.empty())
-        res = SSL_CTX_load_verify_locations(mCtx, certFile.c_str(), certDir.c_str());
+        res = SSL_CTX_load_verify_locations(
+          mCtx, (certFile.empty()) ? NULL : certFile.c_str(), (certDir.empty()) ? NULL : certDir.c_str());
     else
         res = SSL_CTX_set_default_verify_paths(mCtx);
 
@@ -43,17 +71,16 @@ std::string& feeddownloader::feedDownloader::download(urlParser::URLAddress &add
 void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &address)
 {
     long res;
-    BIO *web = NULL;
 
-    web = BIO_new_ssl_connect(mCtx);
-    if(web == NULL)
+    mWeb = BIO_new_ssl_connect(mCtx);
+    if(mWeb == NULL)
         throw feedreaderException::downloader("Cannot instantiate ssl connection");
 
-    res = BIO_set_conn_hostname(web, std::string(address.address + ":" + ((address.port.empty()) ? "443" : address.port)).c_str());
+    res = BIO_set_conn_hostname(mWeb, std::string(address.address + ":" + ((address.port.empty()) ? "443" : address.port)).c_str());
     if(res != 1)
         throw feedreaderException::downloader("Cannot set connection to server %s", address.address.c_str());
 
-    BIO_get_ssl(web, &mSsl);
+    BIO_get_ssl(mWeb, &mSsl);
     if(mSsl == NULL)
         throw feedreaderException::downloader("Cannot get ssl connection to server %s", address.address.c_str());
 
@@ -66,11 +93,11 @@ void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &addres
     if(res != 1)
         throw feedreaderException::downloader("Cannot set tlsext to server %s", address.address.c_str());
 
-    res = BIO_do_connect(web);
+    res = BIO_do_connect(mWeb);
     if(res != 1)
         throw feedreaderException::downloader("Cannot connect to server %s", address.address.c_str());
 
-    res = BIO_do_handshake(web);
+    res = BIO_do_handshake(mWeb);
     if(res != 1)
         throw feedreaderException::downloader("Cannot estabilish handshake to server %s", address.address.c_str());
 
@@ -90,16 +117,12 @@ void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &addres
 
     std::string getRequest = createGet(address);
 
-    BIO_puts(web, getRequest.c_str());
-    //TODO maybe delete this puts
-    //BIO_puts(out, "\n");
+    BIO_puts(mWeb, getRequest.c_str());
 
-    readFromBio(web);
+    readFromBio(mWeb);
 
-//    if(out)
-//        BIO_free(out);
-    if(web != NULL)
-        BIO_free_all(web);
+    if(mWeb != NULL)
+        BIO_free_all(mWeb);
 
 }
 
