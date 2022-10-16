@@ -7,7 +7,8 @@
 #include "urlparser.h"
 #include "utils/exceptions.h"
 
-
+// TODO poriesit vidirtelnost do vonka
+// zaistit aby pred .cz a podobne
 std::regex urlParser::txt_regex(R"(^((http)|(https))(\:\/\/)((www\.)?[a-zA-Z0-9\.\-\_]+[a-z]{1,8})(\:\d+)?(\/[^\ \t\?]*)?(\?\S+)?$)");
 
 void urlParser::parseURL(const std::string&  URL, struct URLAddress& address)
@@ -24,6 +25,8 @@ void urlParser::parseURL(const std::string&  URL, struct URLAddress& address)
 
     address.port = std::string((portStart!=addressEnd) ? portStart+1 : portStart, addressEnd);
     address.path = std::string(addressEnd, optionsStart);
+    if(address.path.empty())
+        address.path = "/";
     if(portStart != addressEnd)
         addressEnd = std::find(addressStart, endURL, ':');
     address.address = std::string(addressStart, addressEnd);
