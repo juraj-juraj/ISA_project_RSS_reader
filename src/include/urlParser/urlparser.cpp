@@ -55,7 +55,7 @@ urlParser::FileURLReader::FileURLReader(std::string& file, std::shared_ptr<Utils
     try {
         feedfile.open(file);
         if(feedfile.fail())
-            throw feedreaderException::URLParsing("Cannot open file %s", file);
+            throw feedreaderException::URLParsing("Cannot open file %s", file.c_str());
         std::stringstream buffer;
         buffer << feedfile.rdbuf();
         std::string contents(buffer.str());

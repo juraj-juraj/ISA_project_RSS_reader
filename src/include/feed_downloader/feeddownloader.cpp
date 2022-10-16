@@ -1,7 +1,7 @@
-#include "feeddownloader.h"
-#include "utils/exceptions.h"
 #include <iostream>
 
+#include "feeddownloader.h"
+#include "utils/exceptions.h"
 
 feeddownloader::feedDownloader::feedDownloader(std::string certDir, std::string certFile)
 {
@@ -21,14 +21,10 @@ feeddownloader::feedDownloader::feedDownloader(std::string certDir, std::string 
     const long flags = SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3 | SSL_OP_NO_COMPRESSION;
     SSL_CTX_set_options(mCtx, flags);
 
-    if(!certDir.empty() && !certFile.empty())
-        throw feedreaderException::downloader("Cannot specify cerificates directory and certfile at the same time");
-    else if(!certDir.empty())
-        res = SSL_CTX_load_verify_dir(mCtx, certDir.c_str());
-    else if(!certFile.empty())
-        res = SSL_CTX_load_verify_file(mCtx, certFile.c_str());
+    if(!certDir.empty() || !certFile.empty())
+        res = SSL_CTX_load_verify_locations(mCtx, certFile.c_str(), certDir.c_str());
     else
-        res = SSL_CTX_load_verify_dir(mCtx, "/etc/ssl/certs");
+        res = SSL_CTX_set_default_verify_paths(mCtx);
 
     if(res != 1)
         throw feedreaderException::downloader("Cannot load certificate(s)");
