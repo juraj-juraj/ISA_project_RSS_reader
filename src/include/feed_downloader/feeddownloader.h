@@ -45,7 +45,7 @@ private:
 
     static std::string createGet(struct urlParser::URLAddress& address);
 
-    void readFromBio(BIO *web, BIO *out);
+    void readFromBio(BIO *web);
 
     SSL* mSsl = NULL;
     SSL_CTX* mCtx = NULL;
