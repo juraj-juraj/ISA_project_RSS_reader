@@ -1,5 +1,6 @@
 #pragma once
 
+#include <functional>
 #include <memory>
 #include <string>
 #include <stdexcept>
@@ -18,5 +19,22 @@ std::string string_format(const std::string& format, Args ... args)
     std::snprintf( buf.get(), size, format.c_str(), args ... );
     return std::string( buf.get(), buf.get() + size - 1 ); // We don't want the '\0' inside
 }
+
+/**
+ * @brief splitDelim
+ * splits exactly once string in delimiter
+ * @param source
+ * @param delimiter
+ * @return pair with split strings
+ */
+std::pair<std::string, std::string> splitDelim(const std::string& source,const char delimiter);
+
+void normalizeInPlace(std::string &source);
+
+std::string& lTrim(std::string& source, std::function<bool(char)> predicat);
+
+std::string& rTrim(std::string& source, std::function<bool(char)> predicat);
+
+std::string& lrTrim(std::string& source, std::function<bool(char)> predicat);
 
 }
