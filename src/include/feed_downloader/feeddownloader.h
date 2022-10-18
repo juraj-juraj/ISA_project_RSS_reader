@@ -41,6 +41,10 @@ public:
 
     std::string& download(struct urlParser::URLAddress& address);
 
+    static std::vector<std::pair<std::string, std::string>> parseResponseHeader(std::string& header);
+
+    static void toLinuxEndLine(std::string& source);
+
 private:
 
     void httpsDownload(struct urlParser::URLAddress& address);

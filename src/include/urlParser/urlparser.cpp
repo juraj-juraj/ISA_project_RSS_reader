@@ -9,7 +9,7 @@
 
 // TODO poriesit vidirtelnost do vonka
 // zaistit aby pred .cz a podobne
-std::regex urlParser::txt_regex(R"(^((http)|(https))(\:\/\/)((www\.)?[a-zA-Z0-9\.\-\_]+[a-z]{1,8})(\:\d+)?(\/[^\ \t\?]*)?(\?\S+)?$)");
+std::regex urlParser::txt_regex(R"(^((http)|(https))(\:\/\/)((www\.)?[a-zA-Z0-9\.\-\_]+[a-z]{1,18})(\:\d+)?(\/[^\ \t\?]*)?(\?\S+)?$)");
 
 void urlParser::parseURL(const std::string&  URL, struct URLAddress& address)
 {

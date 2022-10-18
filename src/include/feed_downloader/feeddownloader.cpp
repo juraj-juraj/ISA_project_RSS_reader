@@ -4,32 +4,7 @@
 #include "utils/exceptions.h"
 
 feeddownloader::feedDownloader::feedDownloader()
-{
-//    long res = 1;
-//    SSL_library_init();
-//    const SSL_METHOD* method = SSLv23_method();
-//    if(method == NULL)
-//        throw feedreaderException::downloader("Cannot setup ssl method");
-
-//    mCtx = SSL_CTX_new(method);
-//    if(mCtx == NULL)
-//        throw feedreaderException::downloader("Cannot create ssl context");
-
-//    SSL_CTX_set_verify_depth(mCtx, 4);
-
-//    const long flags = SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3 | SSL_OP_NO_COMPRESSION;
-//    SSL_CTX_set_options(mCtx, flags);
-
-//    if(!certDir.empty() || !certFile.empty())
-//        ;
-//        //res = SSL_CTX_load_verify_locations(mCtx, certFile.c_str(), certDir.c_str());
-//    else
-//        res = SSL_CTX_load_verify_locations(mCtx, NULL, "/etc/ssl/certs/");
-//        //res = SSL_CTX_set_default_verify_paths(mCtx);
-
-//    if(res != 1)
-//        throw feedreaderException::downloader("Cannot load certificate(s)");
-}
+{ }
 
 void feeddownloader::feedDownloader::setupCertificate(std::string certDir, std::string certFile)
 {
@@ -68,6 +43,27 @@ std::string& feeddownloader::feedDownloader::download(urlParser::URLAddress &add
     return mBuffer;
 }
 
+std::vector<std::pair<std::string, std::string> > feeddownloader::feedDownloader::parseResponseHeader(std::string& header)
+{
+    std::vector<std::pair<std::string, std::string>> parsedVal;
+    auto previt = header.begin();
+    for(auto it = std::find(header.begin(), header.end(), '\n'); previt != header.end();it = std::find(it+1, header.end(), '\n'))
+    {
+        auto temp_string = std::string(previt, it);
+        Utils::rTrim(temp_string, [] (char c) {return c == '\r';});
+        auto paramPair = Utils::splitDelim(temp_string, ':');
+        Utils::normalizeInPlace(paramPair.first);
+        parsedVal.push_back(paramPair);
+        previt = it;
+    }
+    return parsedVal;
+}
+
+void feeddownloader::feedDownloader::toLinuxEndLine(std::string &mBuffer)
+{
+    mBuffer.erase(remove_if(mBuffer.begin(), mBuffer.end(), [] (char letter) {return letter == '\r'; }), mBuffer.end());
+}
+
 void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &address)
 {
     long res;
@@ -84,7 +80,6 @@ void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &addres
     if(mSsl == NULL)
         throw feedreaderException::downloader("Cannot get ssl connection to server %s", address.address.c_str());
 
-
     res = SSL_set_cipher_list(mSsl, mPREFERRED_CIPHERS);
     if(res != 1)
         throw feedreaderException::downloader("Cannot set prefered cipher list to server %s", address.address.c_str());
@@ -96,10 +91,6 @@ void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &addres
     res = BIO_do_connect(mWeb);
     if(res != 1)
         throw feedreaderException::downloader("Cannot connect to server %s", address.address.c_str());
-
-    res = BIO_do_handshake(mWeb);
-    if(res != 1)
-        throw feedreaderException::downloader("Cannot estabilish handshake to server %s", address.address.c_str());
 
     /* Step 1: verify a server certificate was presented during the negotiation */
     X509* cert = SSL_get_peer_certificate(mSsl);
@@ -123,6 +114,7 @@ void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &addres
 
     if(mWeb != NULL)
         BIO_free_all(mWeb);
+    mWeb = NULL;
 
 }
 
@@ -138,23 +130,10 @@ void feeddownloader::feedDownloader::httpDownload(urlParser::URLAddress &address
     if(res != 1)
         throw feedreaderException::downloader("Cannot set connection to server %s", address.address.c_str());
 
-    res = BIO_do_handshake(mWeb);
-    if(res != 1)
-        throw feedreaderException::downloader("Cannot do handshake to server %s", address.address.c_str());
-
     std::string getRequest = createGet(address);
     BIO_puts(mWeb, getRequest.c_str());
 
-    //readFromBio(mWeb, out);
-
-    int len = 0;
-    char buff[_downloaderconsts::BUFF_SIZE] = {0};
-    do
-    {
-        len = BIO_read(mWeb, buff, _downloaderconsts::BUFF_SIZE);
-        mBuffer.append(buff, len);
-
-    } while(len > 0 || BIO_should_retry(mWeb));
+    readFromBio(mWeb);
 
     if(mWeb != NULL)
         BIO_free_all(mWeb);
@@ -179,4 +158,5 @@ void feeddownloader::feedDownloader::readFromBio(BIO *web)
         mBuffer.append(buff, len);
 
     } while(len > 0 || BIO_should_retry(web));
+    toLinuxEndLine(mBuffer);
 }
