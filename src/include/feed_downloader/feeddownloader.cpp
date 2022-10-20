@@ -40,12 +40,21 @@ std::string& feeddownloader::feedDownloader::download(urlParser::URLAddress &add
         this->httpDownload(address);
     else
         this->httpsDownload(address);
+
+    auto startHeaderI = Utils::findIt(mBuffer, "\n");
+    auto endHeaderI = Utils::findIt(mBuffer, "\n\n");
+    std::string temp(startHeaderI+1, endHeaderI);
+    auto params = parseResponseHeader(std::string(startHeaderI+1, endHeaderI));
+    if(params.count("transfer-encoding") && params.at("transfer-encoding") == "chunked")
+    {
+        mBuffer = removeChunks(std::string(endHeaderI+2, mBuffer.end()));
+    }
     return mBuffer;
 }
 
-std::vector<std::pair<std::string, std::string> > feeddownloader::feedDownloader::parseResponseHeader(std::string& header)
+std::map<std::string, std::string> feeddownloader::feedDownloader::parseResponseHeader(const std::string& header)
 {
-    std::vector<std::pair<std::string, std::string>> parsedVal;
+    std::map<std::string, std::string> parsedVal;
     auto previt = header.begin();
     for(auto it = std::find(header.begin(), header.end(), '\n'); previt != header.end();it = std::find(it+1, header.end(), '\n'))
     {
@@ -53,15 +62,26 @@ std::vector<std::pair<std::string, std::string> > feeddownloader::feedDownloader
         Utils::rTrim(temp_string, [] (char c) {return c == '\r';});
         auto paramPair = Utils::splitDelim(temp_string, ':');
         Utils::normalizeInPlace(paramPair.first);
-        parsedVal.push_back(paramPair);
+        parsedVal.emplace(paramPair.first, paramPair.second);
         previt = it;
     }
     return parsedVal;
 }
 
-void feeddownloader::feedDownloader::toLinuxEndLine(std::string &mBuffer)
+std::string feeddownloader::feedDownloader::removeChunks(const std::string &body)
 {
-    mBuffer.erase(remove_if(mBuffer.begin(), mBuffer.end(), [] (char letter) {return letter == '\r'; }), mBuffer.end());
+    std::stringstream ss;
+    size_t nextIndex;
+    auto it = body.begin();
+    for(size_t chunkSize = std::stoul(body, &nextIndex, 16); chunkSize != 0; chunkSize = std::stoul(std::string(it, body.end()), &nextIndex, 16))
+    {
+        it += nextIndex;
+        auto tem = std::string(it , it + 20);
+        auto temp = std::string(it + chunkSize-10, it + chunkSize+10);
+        ss << std::string(it + 1, it + chunkSize + 1);
+        it += chunkSize + 2;
+    }
+    return ss.str();
 }
 
 void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &address)
@@ -79,6 +99,8 @@ void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &addres
     BIO_get_ssl(mWeb, &mSsl);
     if(mSsl == NULL)
         throw feedreaderException::downloader("Cannot get ssl connection to server %s", address.address.c_str());
+
+    SSL_set_mode(mSsl, SSL_MODE_AUTO_RETRY);
 
     res = SSL_set_cipher_list(mSsl, mPREFERRED_CIPHERS);
     if(res != 1)
@@ -158,5 +180,5 @@ void feeddownloader::feedDownloader::readFromBio(BIO *web)
         mBuffer.append(buff, len);
 
     } while(len > 0 || BIO_should_retry(web));
-    toLinuxEndLine(mBuffer);
+    Utils::toLinuxEndline(mBuffer);
 }

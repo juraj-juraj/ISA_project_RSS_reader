@@ -33,3 +33,17 @@ std::string &Utils::lrTrim(std::string &source, std::function<bool(char)> predic
 {
     return lTrim(rTrim(source, predicat), predicat);
 }
+
+std::string &Utils::toLinuxEndline(std::string &buffer)
+{
+    buffer.erase(remove_if(buffer.begin(), buffer.end(), [] (char letter) {return letter == '\r'; }), buffer.end());
+    return buffer;
+}
+
+std::string::iterator Utils::findIt(std::string& source,const std::string& pattern)
+{
+    auto index = source.find(pattern);
+    if(index == std::string::npos)
+        return source.end();
+    return source.begin() + index;
+}

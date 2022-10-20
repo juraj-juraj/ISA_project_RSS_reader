@@ -15,6 +15,6 @@ Transfer-Encoding: chunked
 Content-Type: text/xml; charset=utf-8)");
 
     auto actualVal = feeddownloader::feedDownloader::parseResponseHeader(headerVal);
-    auto refVal = std::pair<std::string, std::string>{"date", "Mon, 17 Oct 2022 20:20:06 GMT"};
-    ASSERT_EQ(actualVal[0], refVal);
+    auto refVal = "Mon, 17 Oct 2022 20:20:06 GMT";
+    ASSERT_EQ(actualVal["date"], refVal);
 }

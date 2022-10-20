@@ -37,4 +37,8 @@ std::string& rTrim(std::string& source, std::function<bool(char)> predicat);
 
 std::string& lrTrim(std::string& source, std::function<bool(char)> predicat);
 
+std::string& toLinuxEndline(std::string& buffer);
+
+std::string::iterator findIt(std::string&source,const std::string& pattern);
+
 }

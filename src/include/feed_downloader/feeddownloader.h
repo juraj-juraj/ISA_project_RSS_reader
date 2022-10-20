@@ -41,9 +41,9 @@ public:
 
     std::string& download(struct urlParser::URLAddress& address);
 
-    static std::vector<std::pair<std::string, std::string>> parseResponseHeader(std::string& header);
+    static std::map<std::string, std::string>  parseResponseHeader(const std::string& header);
 
-    static void toLinuxEndLine(std::string& source);
+    static std::string removeChunks(const std::string& body);
 
 private:
 

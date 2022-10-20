@@ -12,6 +12,9 @@
 #include "utils/logger.h"
 #include "urlParser/urlparser.h"
 #include "feed_downloader/feeddownloader.h"
+#include "xmlparser/xmlparser.h"
+
+// some feed: https://feeds.simplecast.com/54nAGcIl
 
 #define HOST_NAME "www.http.badssl.com"
 #define HOST_PORT "80"
@@ -39,6 +42,7 @@ int main(int argc, const char *argv[])
     {
         argParser.parse(argc, argv);
         auto parsedValues = argParser.getValues();
+        xmlParser::processor feedParser(argParser.argParsed(AUTHOR_ARG), argParser.argParsed(DATESHOW_ARG), argParser.argParsed(URLSHOW_ARG), logger);
 
         for(const auto& [key, value] : parsedValues)
         {
@@ -53,7 +57,8 @@ int main(int argc, const char *argv[])
         while(urlGetter.next(address))
         {
             xmlFeed = downloader.download(address);
-            logger->write(xmlFeed);
+            feedParser.parseFeed(xmlFeed);
+            //logger->write(xmlFeed);
         }
 
     }
