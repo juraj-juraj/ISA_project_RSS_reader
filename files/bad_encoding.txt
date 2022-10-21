@@ -1,0 +1,198 @@
+Key: URL | value: http://qmail-info.ses.sk/ 
+HTTP/1.1 200 OK
+Date: Mon, 17 Oct 2022 20:56:18 GMT
+Server: Apache/2.2.16 (Debian)
+X-Powered-By: PHP/5.3.3-7+squeeze25
+Vary: Accept-Encoding
+Connection: close
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=iso8859-2
+
+23bd
+<html>
+<head>
+  <title>webmail.ses.sk - info & help - SK</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta name="robots" content="index,follow">
+  <meta name="descriptions" content="webmail.ses.sk - info & help - SK">
+  <meta name="author" content="Sona Novosadova">
+  <meta name="keywords" content="webmail.ses.sk, SES Tlmace, SES Tlmače, Slovenske energeticke strojarne Tlmace, Slovenské eneregetické strojárne Tlmače" />
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-2">
+  <link rel="stylesheet" type="text/css" href="qmail.css" title="Style">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21492665-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+
+<div id="divLogo"><a href="http://www.ses.sk" target="_blank"><img src="../images/logo_ses_normal_RGB_20.png" border="0" ></a></div>
+<div id="loginMainDiv">
+</div>
+<div id="divAppIconBar"></div><div id="loginScreenMessage"></div>
+
+
+<!-- <center><img class="fl" src="logo_ses.jpg" alt="Webmail SES a.s. Logo"></center> -->
+
+</script>
+
+<table class="nobg" width="95%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left">&nbsp;</td>
+<td align="right"><a href="index_en.php"><img class="fl" src="flag_en.gif" border="0" alt="Help EN" title="Help EN"></a></td>
+</tr>
+</table>
+
+<h1><center><a href="https://webmail.ses.sk">webmail.ses.sk</a> - informačné stránky</center></h1>
+
+<p></p>
+<ul>
+  <li><font class="emph_black">Inštalácia certifikátu</font></li>
+</ul>
+
+<p>
+Aplikácia <a href="https://webmail.ses.sk">webmail.ses.sk</a> vyžaduje na zaistenie
+bezpečnej elektronickej komunikácie použitie šifrovaného protokolu (https) podpísaného
+certifikačnou autoritou SES.
+Preto doporučujeme inštaláciu certifikátu tejto koreňovej
+certifikačnej autority. Inštaláciou dôjde k pridaniu CA2 SES a CA3 SES do zoznamu
+dôveryhodných certifikačných autorít, čím sa vyhnete chybovým hláseniam
+prehliadača o neznámom vydavateľovi certifikátu pri štarte aplikácie.
+<br><br>
+<!--    Certifikát pre <strong>certifikačnú autoritu CA1 SES a.s.</strong> je k dispozícii
+ <a href="cacert.crt"><strong>tu</strong></a>.<br>  -->
+Certifikát pre <strong>certifikačnú autoritu CA2 SES a.s.</strong> je k dispozícii
+ <a href="ca2cert.crt"><strong>tu</strong></a>.<br>
+Certifikát pre <strong>certifikačnú autoritu CA3 SES a.s.</strong> je k dispozícii
+ <a href="ca3ses.crt"><strong>tu</strong></a>.<br><br>
+Certifikátmi CA2 SES a CA3 SES sú podpísané všetky
+certifikáty *.ses.sk. (webmail.ses.sk, obedy.ses.sk, smtp.ses.sk...), preto 
+v dôsledku inštalácie uvedených certifikátov bude Váš prehliadač alebo mailový klient považovať za dôveryhodné
+aj ďalšie https://*.ses.sk aplikácie.</p>
+
+<p>Postup inštalácie certifikátu do internetového prehliadača:</p>
+<ul>
+	<li class="dot_red"><a href="ie_sk.php">Internet Explorer</a></li>
+<!--	<li class="dot_red"><a href="ie_en.php">Internet Explorer</a> EN</li> -->
+<!-- 	<li class="dot_red"><a href="firefox_sk.php">Mozilla Firefox</a></li> -->
+<!-- 	<li class="dot_red"><a href="firefox_en.php">Mozilla Firefox</a> EN</li> -->
+</ul>
+<p>
+Návod na inštaláciu certifikátu do mailového klienta:</p>
+<ul>
+	<li class="dot_red"><a href="ms_oe_cert_sk.php">Outlook Express</a></li>
+	<li class="dot_red"><a href="ms_oe_cert_sk.php">MS Outlook</a></li>
+	<li class="dot_red"><a href="cert_thunderbird_sk.php">Mozilla Thunderbird</a></li>
+<!--	<li class="dot_red"><a href="cert_thunderbird_en.php">Mozilla Thunderbird</a> EN</li> -->
+</ul>
+<ul>
+  <li><font class="emph_black">Nastavenie mailového klienta</font></li>
+</ul>
+<p>
+Nastavenia sa líšia pre účet POP3 a pre účet IMAP4.<br>
+POP3 je spôsob sťahovania správ, pri ktorom sa všetka doručená pošta stiahne zo servera
+na lokálny počítač a na serveri nezostane. Ak si zaškrtnete voľbu "ponechať správy na serveri",
+je potrebné kontrolovať, či sa nepresiahla veľkosť schránky, prípadne schránku občas vyčistiť cez webmail.
+Pri prístupe POP3 sa sťahuje iba došlá pošta.
+
+<br><br>
+IMAP je spôsob "sťahovania" pošty tak, ze všetky správy naďalej zostávajú na serveri,
+mailový klient si ich len synchronizuje - synchronizujú sa všetky určené priečinky, môže
+sa synchronizovať aj odoslaná pošta. Je to výhodné pre užívateľov, ktorí potrebujú mať správy a ich uloženie v priečinkoch
+prístupné rovnako na viacerých počítačoch alebo zároveň cez mail klienta aj cez webmail.
+<br>
+Pri nastavení mail klienta na IMAP je potrebné priebežne sledovať stav voľnej kapacity schránky, pretože
+veľkosť schránky je štandardne obmedzená na 500 MB. Ak sa schránka preplní, nebude Vám možné doručiť žiadnu
+správu, odosielateľovi sa správa vráti aj s oznamom, že Vaša schránka je plná.
+<br><br>
+Prístup na mail server je mimo podnikovej siete povolený len pre zabezpečené (šifrované) spojenie.
+Odosielanie správ cez smtp.ses.sk zvonku je povolené len na porte 25 cez TLS (transport layer security)
+s povinnou autentifikáciou (meno-heslo ako pre prihlásenie do pošty).
+</p>
+<p>
+<TABLE align="center" width="80%" bgcolor="#dddddd">
+<TR><TD align="left" width="50%">Server prichádzajúcej pošty - protokol POP3</TD><TD align="left">pop3.ses.sk</TD></TR>
+<TR><TD align="left" width="50%">Server prichádzajúcej pošty - protokol IMAP4</TD><TD align="left">imap.ses.sk</TD></TR>
+<TR><TD align="left" width="50%">Server odchádzajúcej pošty - protokol SMTP:</TD><TD align="left">smtp.ses.sk</TD></TR>
+<TR><TD align="left" width="50%">Užívateľské meno:</TD><TD align="left">meno_priezvisko (bez diakritiky)</TD></TR>
+</TABLE>
+</p>
+<p>Postup nastavenia:</p>
+  <ul>
+	<li class="dot_red"><a href="ms_oe_sk.php">Outlook Express</a></li>
+	<li class="dot_red"><a href="ms_outlook_sk.php">MS Outlook</a></li>
+	<li class="dot_red"><a href="thunderbird_sk.php">Mozilla Thunderbird</a></li>
+<!--	<li class="dot_red"><a href="thunderbird_en.php">Mozilla Thunderbird</a> EN</li> -->
+</ul>
+<ul>
+  <li><font class="emph_black">Nastavenie adresárovej služby</font></li>
+</ul>
+<p>
+<p>Nastavenia sa líšia pre prístup v sieti SES a pre prístup zvonku.</p>
+
+<p>Lightweight Directory Access Protocol alebo LDAP je štandardizovaný aplikačný protokol navrhnutý na dotazovanie a modifikáciu adresárových
+služieb, fungujúci cez TCP/IP. Jednotlivé položky sú ukladané na serveri pomocou záznamov, usporiadané do stromovej štruktúry.
+V SES je LDAP používaný na udržiavanie adresárov, riadenie prístupových práv a
+prácu s informáciami o užívateľoch (napríklad na vyhľadávanie adries konkrétnych užívateľov v príslušných adresároch). Súčasťou LDAP je
+autentifikácia klienta .
+</p>
+<p>Mimo podnikovej siete je prístup na vyhľadávanie adries prostredníctvom LDAP servera SES povolený len pre zabezpečené (šifrované) spojenie.
+Vyhľadávanie zvonku je povolené len na porte 636 cez SSL (Secure Sockets Layer) s povinnou autentifikáciou (heslo ako pre prihlásenie do pošty).
+<!-- Po vytvorení SSL spojenia (session) je komunikácia medzi serverom a klientom šifrovaná a teda zabezpečená. -->
+</p>
+
+<p>
+<table align="center" width="80%" bgcolor="#dddddd">
+  <tbody>
+    <tr><td align="left" width="50%">LDAP server</td><td align="left">ldap.ses.sk</td></tr>
+    <tr><td align="left" width="50%">Port</td><td align="left">389</td></tr>
+    <tr><td align="left" width="50%">Koreň LDAP servera</td><td align="left">dc=ses,dc=sk</td></tr>
+  </tbody>
+  </table>
+  </p>
+<p>
+<p>Postup nastavenia:</p>
+  <ul>
+        <li class="dot_red"><a href="ldap_oe_sk.php">Outlook Express</a></li>
+	<li class="dot_red"><a href="ldap_outlook_sk.php">MS Outlook</a></li>
+        <li class="dot_red"><a href="ldap_thunderbird_sk.php">Mozilla Thunderbird</a></li>
+</ul>
+<ul>
+  <li><font class="emph_black">Často kladené <a href="faq_sk.php">otázky</a> (FAQ)</font></li>
+</ul>
+<ul>
+  <li><font class="emph_black">Návod na <a href="config_sk.php">konfiguráciu</a> počítačov na lokálnej sieti SES</font></li>
+</ul>
+<ul>
+  <li><font class="emph_black"><a href="doporucenia.php">Tipy</a> na bezpečné používanie prihlasovacích a identifikačných údajov</font></li>
+</ul>
+<BR>
+<center><table class="nobg" width="200" border="0" cellspacing="0" cellpadding="0">
+<tr><td colspan="2"><center><hr size="1" width="200"></center><br></td></tr>
+<tr><td align="left"><a href="http://thunderbird.czilla.cz/"><img  class="fl" border="0" src="cz-tb-88x31-kontrola.gif" hspace="0" vspace="0" alt="Thunderbird - Posta pod kontrolou" title="Thunderbird - Posta pod kontrolou"></a></td>
+<td align="right"><a href="http://firefox.czilla.cz/"><img  class="fl" border="0" src="cz-ff-88x31-kontrola.gif" hspace="0" vspace="0" alt="Firefox - Web pod kontrolou" title="Firefox - Web pod kontrolou"></a></td>
+</tr>
+</table></center>
+<br>
+<center>
+<hr width="80%">
+</center>
+
+<p align="center">Prípadné otázky sa môžete opýtať telefonicky na čísle 2299,
+alebo e-mailom na adresu sona_novosadova@ses.sk . <br>
+</p>
+</body>
+</html>
+
+0
+

@@ -3,18 +3,22 @@
 #include <libxml/parser.h>
 
 #include <cstring>
-#include "utils/exceptions.h"
 
 void xmlParser::processor::parseFeed(std::string &feed)
 {
     xmlParser::xmlBuilder builder(feed);
-    mRootXml = builder.getRoot();
+    auto root = builder.getRoot();
     if(builder.getType() == xmlParser::feedType::atom)
         parseAtom(builder.getNode());
     else if(builder.getType() == xmlParser::feedType::rss)
         parseRss(builder.getNode());
     else
-        throw feedreaderException::xmlParser("Unknown type of xml");
+        mLogger->errWrite("Error parsing feed: unknown type of xml\n");
+
+    xmlFreeDoc(root);
+    xmlCleanupGlobals();
+    xmlCleanupParser();
+
 }
 
 xmlParser::xmlNode findTag(xmlParser::xmlNode node, const std::string& value)
@@ -44,6 +48,12 @@ void xmlParser::processor::parseAtom(xmlNode node)
             if(title.getNode() != NULL)
                 storage = title.getChild().getContent();
             mLogger->write("%s\n", storage);
+            if(mDateShow)
+            {
+                title = findTag(node.getChild(), "updated");
+                if(title.getNode() != NULL)
+                    mLogger->write("Aktualizace: %s\n", title.getChild().getContent());
+            }
             if(mAuthorShow)
             {
                 title = findTag(node.getChild(), "author");
@@ -55,12 +65,6 @@ void xmlParser::processor::parseAtom(xmlNode node)
                         mLogger->write("Autor: %s\n", title.getChild().getContent());
                     }
                 }
-            }
-            if(mDateShow)
-            {
-                title = findTag(node.getChild(), "updated");
-                if(title.getNode() != NULL)
-                    mLogger->write("Aktualizace: %s\n", title.getChild().getContent());
             }
             if(mUrlShow)
             {
@@ -98,12 +102,6 @@ void xmlParser::processor::parseRss(xmlNode node)
             if(title.getNode() != NULL)
                 storage = title.getChild().getContent();
             mLogger->write("%s\n", storage);
-            if(mAuthorShow)
-            {
-                title = findTag(node.getChild(), "author");
-                if(title.getNode() != NULL)
-                    mLogger->write("Autor: %s\n", title.getChild().getContent());
-            }
             if(mDateShow)
             {
                 title = findTag(node.getChild(), "lastBuildDate");
@@ -111,6 +109,12 @@ void xmlParser::processor::parseRss(xmlNode node)
                     title = findTag(node.getChild(), "pubDate");
                 if(title.getNode() != NULL)
                     mLogger->write("Aktualizace: %s\n", title.getChild().getContent());
+            }
+            if(mAuthorShow)
+            {
+                title = findTag(node.getChild(), "author");
+                if(title.getNode() != NULL)
+                    mLogger->write("Autor: %s\n", title.getChild().getContent());
             }
             if(mUrlShow)
             {

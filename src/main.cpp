@@ -72,7 +72,8 @@ int main(int argc, const char *argv[])
                 logger->errWrite("Cannot load feed from %s\n", address.original.c_str());
                 continue;
             }
-            //feedParser.parseFeed(xmlFeed);
+            feedParser.parseFeed(xmlFeed);
+
             //logger->write(xmlFeed);
             moreUrl = true;
         }

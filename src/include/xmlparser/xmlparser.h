@@ -19,13 +19,6 @@ public:
 
   void parseFeed(std::string& feed);
 
-  ~processor()
-  {
-    //xmlFreeDoc(mRootXml);
-    xmlCleanupGlobals();
-    xmlCleanupParser();
-  };
-
 private:
     void parseAtom(xmlParser::xmlNode node);
     void parseRss(xmlParser::xmlNode node);
