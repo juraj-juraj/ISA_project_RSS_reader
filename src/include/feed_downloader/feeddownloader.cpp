@@ -36,7 +36,7 @@ void feeddownloader::feedDownloader::setupCertificate(std::string certDir, std::
 std::string& feeddownloader::feedDownloader::download(urlParser::URLAddress &address)
 {
     mBuffer.clear();
-    if(address.protocol == "http")
+    if(address.protocol == urlConstants::http)
         this->httpDownload(address);
     else
         this->httpsDownload(address);
@@ -108,7 +108,7 @@ void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &addres
     if(mWeb == NULL)
         throw feedreaderException::downloader("Cannot instantiate ssl connection");
 
-    res = BIO_set_conn_hostname(mWeb, std::string(address.address + ":" + ((address.port.empty()) ? "443" : address.port)).c_str());
+    res = BIO_set_conn_hostname(mWeb, std::string(address.address + ((address.port.empty()) ? ":443" : address.port)).c_str());
     if(res != 1)
         throw feedreaderException::downloader("Cannot set connection to server %s", address.address.c_str());
 
@@ -160,7 +160,7 @@ void feeddownloader::feedDownloader::httpDownload(urlParser::URLAddress &address
 {
     long res = 1;
 
-    mWeb = BIO_new_connect(std::string(address.address + ":" + ((address.port.empty()) ? "80" : address.port)).c_str());
+    mWeb = BIO_new_connect(std::string(address.address + ((address.port.empty()) ? ":80" : address.port)).c_str());
     if(mWeb == NULL)
         throw feedreaderException::downloader("Cannot set connection to server %s", address.address.c_str());
 

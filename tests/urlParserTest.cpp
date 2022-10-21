@@ -16,7 +16,7 @@ class urlParserMock : public ::testing::Test
 protected:
     virtual void checkURL(struct urlParser::URLAddress &actualURL)
     {
-        ASSERT_EQ(actualURL.protocol, "http");
+        ASSERT_EQ(actualURL.protocol, "http://");
         ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
         ASSERT_EQ(actualURL.port, "");
         ASSERT_EQ(actualURL.path, "/news/news-rss.php");
@@ -38,7 +38,7 @@ TEST(urlParser, testOKURL)
 {
     struct urlParser::URLAddress actualURL;
     urlParser::parseURL( R"(http://www.fit.vutbr.cz/news/news-rss.php)", actualURL);
-    ASSERT_EQ(actualURL.protocol, "http");
+    ASSERT_EQ(actualURL.protocol, "http://");
     ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
     ASSERT_EQ(actualURL.port, "");
     ASSERT_EQ(actualURL.path, "/news/news-rss.php");
@@ -49,9 +49,9 @@ TEST(urlParser, testURLPort)
 {
     struct urlParser::URLAddress actualURL;
     urlParser::parseURL( R"(http://www.fit.vutbr.cz:80/news/news-rss.php)", actualURL);
-    ASSERT_EQ(actualURL.protocol, "http");
+    ASSERT_EQ(actualURL.protocol, "http://");
     ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
-    ASSERT_EQ(actualURL.port, "80");
+    ASSERT_EQ(actualURL.port, ":80");
     ASSERT_EQ(actualURL.path, "/news/news-rss.php");
     ASSERT_EQ(actualURL.options, "");
 
@@ -61,9 +61,9 @@ TEST(urlParser, testURLWithOptions)
 {
     struct urlParser::URLAddress actualURL;
     urlParser::parseURL( R"(http://www.fit.vutbr.cz:80/news/news-rss.php?param=4;param2=fds/d)", actualURL);
-    ASSERT_EQ(actualURL.protocol, "http");
+    ASSERT_EQ(actualURL.protocol, "http://");
     ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
-    ASSERT_EQ(actualURL.port, "80");
+    ASSERT_EQ(actualURL.port, ":80");
     ASSERT_EQ(actualURL.path, "/news/news-rss.php");
     ASSERT_EQ(actualURL.options, R"(?param=4;param2=fds/d)");
 }
@@ -72,7 +72,7 @@ TEST(urlParser, testURLWithoutAnything)
 {
     struct urlParser::URLAddress actualURL;
     urlParser::parseURL( R"(http://www.fit.vutbr.cz)", actualURL);
-    ASSERT_EQ(actualURL.protocol, "http");
+    ASSERT_EQ(actualURL.protocol, "http://");
     ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
     ASSERT_EQ(actualURL.port, "");
     ASSERT_EQ(actualURL.path, "/");
@@ -83,7 +83,7 @@ TEST(urlParser, testURLWithoutWWW)
 {
     struct urlParser::URLAddress actualURL;
     urlParser::parseURL( R"(http://en.fit.vutbr.cz/d)", actualURL);
-    ASSERT_EQ(actualURL.protocol, "http");
+    ASSERT_EQ(actualURL.protocol, "http://");
     ASSERT_EQ(actualURL.address, "en.fit.vutbr.cz");
     ASSERT_EQ(actualURL.port, "");
     ASSERT_EQ(actualURL.path, "/d");
@@ -95,7 +95,7 @@ TEST(urlParser, testURLWithoutPathWithOptionsSlash)
 {
     struct urlParser::URLAddress actualURL;
     urlParser::parseURL( R"(http://www.fit.vutbr.cz/?param=4;param2=fds/d)", actualURL);
-    ASSERT_EQ(actualURL.protocol, "http");
+    ASSERT_EQ(actualURL.protocol, "http://");
     ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
     ASSERT_EQ(actualURL.port, "");
     ASSERT_EQ(actualURL.path, "/");
@@ -106,23 +106,46 @@ TEST(urlParser, testURLWithoutPathWithOptions)
 {
     struct urlParser::URLAddress actualURL;
     urlParser::parseURL( R"(http://www.fit.vutbr.cz?param=4;param2=fds/d)", actualURL);
-    ASSERT_EQ(actualURL.protocol, "http");
+    ASSERT_EQ(actualURL.protocol, "http://");
     ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
     ASSERT_EQ(actualURL.port, "");
     ASSERT_EQ(actualURL.path, "/");
     ASSERT_EQ(actualURL.options, R"(?param=4;param2=fds/d)");
 }
 
-TEST(urlParser, teskURLWithoutPathWithOptionsPort)
+TEST(urlParser, testURLWithoutPathWithOptionsPort)
 {
     struct urlParser::URLAddress actualURL;
     urlParser::parseURL( R"(http://www.fit.vutbr.cz:80?param=4;param2=fds/d)", actualURL);
-    ASSERT_EQ(actualURL.protocol, "http");
+    ASSERT_EQ(actualURL.protocol, "http://");
     ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
-    ASSERT_EQ(actualURL.port, "80");
+    ASSERT_EQ(actualURL.port, ":80");
     ASSERT_EQ(actualURL.path, "/");
     ASSERT_EQ(actualURL.options, R"(?param=4;param2=fds/d)");
 }
+
+TEST(urlParser, testLocalhost)
+{
+    struct urlParser::URLAddress actualURL;
+    urlParser::parseURL( R"(localhost:80)", actualURL);
+    ASSERT_EQ(actualURL.protocol, "https://");
+    ASSERT_EQ(actualURL.address, "localhost");
+    ASSERT_EQ(actualURL.port, ":80");
+    ASSERT_EQ(actualURL.path, "/");
+    ASSERT_EQ(actualURL.options, "");
+}
+
+TEST(urlParser, testNoProtocol)
+{
+    struct urlParser::URLAddress actualURL;
+    urlParser::parseURL( R"(www.fit.vutbr.cz:80?param=4;param2=fds/d)", actualURL);
+    ASSERT_EQ(actualURL.protocol, "https://");
+    ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
+    ASSERT_EQ(actualURL.port, ":80");
+    ASSERT_EQ(actualURL.path, "/");
+    ASSERT_EQ(actualURL.options, R"(?param=4;param2=fds/d)");
+}
+
 
 TEST_F(urlParserMock, checkSingleUrl)
 {

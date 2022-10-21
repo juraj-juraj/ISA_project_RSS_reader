@@ -6,10 +6,15 @@
 
 #include "utils/logger.h"
 
+namespace urlConstants
+{
+constexpr const char* http = "http://";
+constexpr const char* https = "https://";
+extern std::regex txt_regex;
+}
+
 namespace urlParser
 {
-
-extern std::regex txt_regex;
 
 struct URLAddress{
     std::string protocol;
@@ -18,6 +23,15 @@ struct URLAddress{
     std::string port;
     std::string options;
     std::string original;
+};
+
+enum class URLPart : size_t{
+    whole = 0,
+    protocol = 1,
+    domain = 2,
+    port = 3,
+    path = 4,
+    options = 5
 };
 
 class URLReaderI
