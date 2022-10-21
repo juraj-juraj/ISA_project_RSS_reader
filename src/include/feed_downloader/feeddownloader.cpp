@@ -3,9 +3,6 @@
 #include "feeddownloader.h"
 #include "utils/exceptions.h"
 
-feeddownloader::feedDownloader::feedDownloader()
-{ }
-
 void feeddownloader::feedDownloader::setupCertificate(std::string certDir, std::string certFile)
 {
     long res = 1;
@@ -86,8 +83,6 @@ std::string feeddownloader::feedDownloader::removeChunks(const std::string &body
     for(size_t chunkSize = std::stoul(body, &nextIndex, 16); chunkSize != 0; chunkSize = std::stoul(std::string(it, body.end()), &nextIndex, 16))
     {
         it += nextIndex;
-        auto tem = std::string(it , it + 20);
-        auto temp = std::string(it + chunkSize-10, it + chunkSize+10);
         ss << std::string(it + 1, it + chunkSize + 1);
         it += chunkSize + 2;
     }
@@ -103,46 +98,67 @@ size_t feeddownloader::feedDownloader::getReturnCode(std::string head)
 void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &address)
 {
     long res;
-
+    mBuffer.clear();
     mWeb = BIO_new_ssl_connect(mCtx);
     if(mWeb == NULL)
-        throw feedreaderException::downloader("Cannot instantiate ssl connection");
+    {
+        mLogger->errWrite("Error donwloading feed: Cannot instantiate ssl connection to server %s\n", address.address.c_str());
+        return;
+    }
 
     res = BIO_set_conn_hostname(mWeb, std::string(address.address + ((address.port.empty()) ? ":443" : address.port)).c_str());
     if(res != 1)
-        throw feedreaderException::downloader("Cannot set connection to server %s", address.address.c_str());
+    {
+        mLogger->errWrite("Error downloading feed: Cannot set connection to server %s\n", address.address.c_str());
+        return;
+    }
 
     BIO_get_ssl(mWeb, &mSsl);
     if(mSsl == NULL)
-        throw feedreaderException::downloader("Cannot get ssl connection to server %s", address.address.c_str());
+    {
+        mLogger->errWrite("Error downloading feed: Cannot get ssl connection to server %s\n", address.address.c_str());
+        return;
+    }
 
     SSL_set_mode(mSsl, SSL_MODE_AUTO_RETRY);
 
     res = SSL_set_cipher_list(mSsl, mPREFERRED_CIPHERS);
     if(res != 1)
-        throw feedreaderException::downloader("Cannot set prefered cipher list to server %s", address.address.c_str());
+    {
+        mLogger->errWrite("Error downloading feed: Cannot set prefered cipher list to server: %s\n", address.address.c_str());
+        return;
+    }
 
     res = SSL_set_tlsext_host_name(mSsl, address.address.c_str());
     if(res != 1)
-        throw feedreaderException::downloader("Cannot set tlsext to server %s", address.address.c_str());
+    {
+        mLogger->errWrite("Error downloading feed: Cannot set tlsext to server: %s\n", address.address.c_str());
+        return;
+    }
 
     res = BIO_do_connect(mWeb);
     if(res != 1)
-        throw feedreaderException::downloader("Cannot connect to server %s", address.address.c_str());
+    {
+        mLogger->errWrite("Error downloading feed: Cannot connect to server: %s\n", address.address.c_str());
+        return;
+    }
 
-    /* Step 1: verify a server certificate was presented during the negotiation */
     X509* cert = SSL_get_peer_certificate(mSsl);
     if(cert)
     {
         X509_free(cert);
     }
     if(cert == NULL)
-        throw feedreaderException::downloader("Certificate from server %s is not valid", address.address.c_str());
+    {
+        mLogger->errWrite("Error downloading feed: cerificate from server %s is not valid\n", address.address.c_str());
+        return;
+    }
 
-    /* Step 2: verify the result of chain verification */
-    /* Verification performed according to RFC 4158    */
     if(SSL_get_verify_result(mSsl) != X509_V_OK)
-        throw feedreaderException::downloader("Certificate from server %s is not valid", address.address.c_str());
+    {
+        mLogger->errWrite("Error downloading feed: cerificate from server %s is not valid\n", address.address.c_str());
+        return;
+    }
 
     std::string getRequest = createGet(address);
 
@@ -162,11 +178,17 @@ void feeddownloader::feedDownloader::httpDownload(urlParser::URLAddress &address
 
     mWeb = BIO_new_connect(std::string(address.address + ((address.port.empty()) ? ":80" : address.port)).c_str());
     if(mWeb == NULL)
-        throw feedreaderException::downloader("Cannot set connection to server %s", address.address.c_str());
+    {
+        mLogger->errWrite("Error downloading feed: Cannot set connection to server %s\n", address.address.c_str());
+        return;
+    }
 
     res = BIO_do_connect(mWeb);
     if(res != 1)
-        throw feedreaderException::downloader("Cannot set connection to server %s", address.address.c_str());
+    {
+        mLogger->errWrite("Error downloading feed: Cannot set connection to server %s\n", address.address.c_str());
+        return;
+    }
 
     std::string getRequest = createGet(address);
     BIO_puts(mWeb, getRequest.c_str());

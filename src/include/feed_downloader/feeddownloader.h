@@ -13,6 +13,7 @@
 #include <openssl/opensslconf.h>
 
 #include "urlParser/urlparser.h"
+#include "utils/logger.h"
 
 namespace _downloaderconsts
 {
@@ -23,12 +24,10 @@ namespace _downloaderconsts
 namespace feeddownloader
 {
 
-constexpr const char* DEFAULT_CERT_DIR = "/etc/ssl/certs";
-
 class feedDownloader
 {
 public:
-    feedDownloader();
+    feedDownloader(std::shared_ptr<Utils::logger> logger) : mLogger(logger) {};
 
     void setupCertificate(std::string certDir, std::string certFile);
 
@@ -61,6 +60,7 @@ private:
     SSL_CTX* mCtx = NULL;
     BIO *mWeb = NULL;
     std::string mBuffer;
+    std::shared_ptr<Utils::logger> mLogger;
     constexpr static const char* const mPREFERRED_CIPHERS = "HIGH:!aNULL:!kRSA:!PSK:!SRP:!MD5:!RC4";
 };
 
