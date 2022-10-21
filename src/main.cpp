@@ -44,6 +44,12 @@ int main(int argc, const char *argv[])
     {
         argParser.parse(argc, argv);
         auto parsedValues = argParser.getValues();
+        if(argParser.argParsed(HELP_ARG))
+        {
+            logger->write(HELP_MSG);
+            return 0;
+        }
+
         xmlParser::processor feedParser(argParser.argParsed(AUTHOR_ARG), argParser.argParsed(DATESHOW_ARG), argParser.argParsed(URLSHOW_ARG), logger);
 
 //        for(const auto& [key, value] : parsedValues)
