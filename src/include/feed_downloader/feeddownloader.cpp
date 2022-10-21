@@ -42,12 +42,22 @@ std::string& feeddownloader::feedDownloader::download(urlParser::URLAddress &add
         this->httpsDownload(address);
 
     auto startHeaderI = Utils::findIt(mBuffer, "\n");
+    auto returnCode = getReturnCode(std::string(mBuffer.begin(), startHeaderI));
     auto endHeaderI = Utils::findIt(mBuffer, "\n\n");
-    std::string temp(startHeaderI+1, endHeaderI);
     auto params = parseResponseHeader(std::string(startHeaderI+1, endHeaderI));
+
+    if(returnCode >= 400)
+        return mBuffer = "";
+    if(returnCode >= 300)
+    {
+        urlParser::parseURL(params.at("location"), address);
+        return feeddownloader::feedDownloader::download(address);
+    }
+
+    mBuffer = std::string(endHeaderI + 2, mBuffer.end());
     if(params.count("transfer-encoding") && params.at("transfer-encoding") == "chunked")
     {
-        mBuffer = removeChunks(std::string(endHeaderI+2, mBuffer.end()));
+        mBuffer = removeChunks(mBuffer);
     }
     return mBuffer;
 }
@@ -82,6 +92,12 @@ std::string feeddownloader::feedDownloader::removeChunks(const std::string &body
         it += chunkSize + 2;
     }
     return ss.str();
+}
+
+size_t feeddownloader::feedDownloader::getReturnCode(std::string head)
+{
+    auto startCodeIt = Utils::findIt(head, " ");
+    return std::stoul(std::string(startCodeIt, head.end()));
 }
 
 void feeddownloader::feedDownloader::httpsDownload(urlParser::URLAddress &address)

@@ -44,10 +44,10 @@ int main(int argc, const char *argv[])
         auto parsedValues = argParser.getValues();
         xmlParser::processor feedParser(argParser.argParsed(AUTHOR_ARG), argParser.argParsed(DATESHOW_ARG), argParser.argParsed(URLSHOW_ARG), logger);
 
-        for(const auto& [key, value] : parsedValues)
-        {
-            logger->write("Key: %s | value: %s \n", key.c_str(), value.c_str());
-        }
+//        for(const auto& [key, value] : parsedValues)
+//        {
+//            logger->write("Key: %s | value: %s \n", key.c_str(), value.c_str());
+//        }
 
         urlParser::URLParser urlGetter(argParser.getValue(URLPOS_ARG), argParser.getValue(FEEDFILE_ARG), logger);
         struct urlParser::URLAddress address;
@@ -57,6 +57,11 @@ int main(int argc, const char *argv[])
         while(urlGetter.next(address))
         {
             xmlFeed = downloader.download(address);
+            if(xmlFeed.empty())
+            {
+                logger->errWrite("Cannot load feed from %s\n", address.original.c_str());
+                continue;
+            }
             feedParser.parseFeed(xmlFeed);
             //logger->write(xmlFeed);
         }

@@ -43,7 +43,7 @@ add_library(xmlParser
 
 target_link_libraries(xmlParser PUBLIC feedreaderUtils xml2)
 target_link_libraries(URLParser PUBLIC feedreaderUtils)
-target_link_libraries(feedDownloader PUBLIC feedreaderUtils ssl crypto)
+target_link_libraries(feedDownloader PUBLIC URLParser feedreaderUtils ssl crypto)
 
 add_executable(feedreader ${SRC})
 target_link_libraries(feedreader PUBLIC parameterParser)

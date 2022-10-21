@@ -47,6 +47,8 @@ public:
 
 private:
 
+    size_t getReturnCode(std::string head);
+
     void httpsDownload(struct urlParser::URLAddress& address);
 
     void httpDownload (struct urlParser::URLAddress& address);
