@@ -11,7 +11,7 @@ option(RSS_READER_USE_MSAN "Compile with MemorySanitizer" OFF)
 option(RSS_READER_USE_TSAN "Compile with ThreadSanitizer" OFF)
 option(RSS_READER_ENABLE_CCACHE "Enable compiling using ccache if available" ON)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -g")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 set(PROJECT_RSS_READER_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/")

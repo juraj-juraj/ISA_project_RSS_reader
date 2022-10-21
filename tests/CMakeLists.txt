@@ -28,5 +28,26 @@ target_link_libraries(urlParserTest
     GTest::GTest
     URLParser)
 
+add_executable(utilsTest
+    utilsTest.cpp)
+
+target_link_libraries(utilsTest
+    PRIVATE
+    GTest::GTest
+    feedreaderUtils
+)
+
+add_executable(feedDownloaderTest
+    feedDownloaderTest.cpp)
+
+target_link_libraries(feedDownloaderTest
+    PRIVATE
+    GTest::GTest
+    feedDownloader
+)
+
 add_test(NAME argParserGTest COMMAND "${CMAKE_BINARY_DIR}/argParserTest")
 add_test(NAME urlParserGTest COMMAND "${CMAKE_BINARY_DIR}/urlParserTest")
+add_test(NAME utilsGTest COMMAND "${CMAKE_BINARY_DIR}/utilsTest")
+add_test(NAME feedDownloaderGTest COMMAND "${CMAKE_BINARY_DIR}/feedDownloaderTest")
+

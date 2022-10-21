@@ -1,4 +1,6 @@
 cmake_minimum_required (VERSION 3.0)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(libxml2 REQUIRED libxml-2.0)
 
 set(SRC
     main.cpp
@@ -29,9 +31,27 @@ add_library(URLParser
     include/urlParser/urlparser.cpp
 )
 
+add_library(feedDownloader
+    include/feed_downloader/feeddownloader.h
+    include/feed_downloader/feeddownloader.cpp
+)
+
+add_library(xmlParser
+    include/xmlparser/xmlparser.h
+    include/xmlparser/xmlparser.cpp
+    include/xmlparser/xmlnode.h
+    include/xmlparser/xmlnode.cpp
+)
+
+
+target_link_libraries(xmlParser PUBLIC feedreaderUtils ${libxml2_LIBRARIES})
+target_include_directories(xmlParser PUBLIC ${libxml2_INCLUDE_DIRS})
+target_compile_options(xmlParser PUBLIC ${libxml2_CFLAGS_OTHER})
 target_link_libraries(URLParser PUBLIC feedreaderUtils)
+target_link_libraries(feedDownloader PUBLIC URLParser feedreaderUtils ssl crypto)
 
 add_executable(feedreader ${SRC})
 target_link_libraries(feedreader PUBLIC parameterParser)
 target_link_libraries(feedreader PUBLIC URLParser)
-
+target_link_libraries(feedreader PUBLIC feedDownloader)
+target_link_libraries(feedreader PUBLIC xmlParser)

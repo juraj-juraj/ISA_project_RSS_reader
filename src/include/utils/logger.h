@@ -25,7 +25,7 @@ public:
     {
         errWrite(Utils::string_format(format, args...));
     }
-    void errWrite(const std::string &msg)
+    void errWrite(const std::string& msg)
     {
         mErrStream << msg;
     }

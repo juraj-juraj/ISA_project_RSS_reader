@@ -7,8 +7,9 @@
 #include "urlparser.h"
 #include "utils/exceptions.h"
 
-
-std::regex urlParser::txt_regex(R"(^((http)|(https))(\:\/\/)((www\.)?[a-zA-Z0-9\.\-\_]+[a-z]{1,8})(\:\d+)?(\/[^\ \t\?]*)?(\?\S+)?$)");
+// TODO poriesit vidirtelnost do vonka
+// zaistit aby pred .cz a podobne
+std::regex urlParser::txt_regex(R"(^((http)|(https))(\:\/\/)((www\.)?[a-zA-Z0-9\.\-\_]+[a-z]{1,18})(\:\d+)?(\/[^\ \t\?]*)?(\?\S+)?$)");
 
 void urlParser::parseURL(const std::string&  URL, struct URLAddress& address)
 {
@@ -24,6 +25,8 @@ void urlParser::parseURL(const std::string&  URL, struct URLAddress& address)
 
     address.port = std::string((portStart!=addressEnd) ? portStart+1 : portStart, addressEnd);
     address.path = std::string(addressEnd, optionsStart);
+    if(address.path.empty())
+        address.path = "/";
     if(portStart != addressEnd)
         addressEnd = std::find(addressStart, endURL, ':');
     address.address = std::string(addressStart, addressEnd);
@@ -52,7 +55,7 @@ urlParser::FileURLReader::FileURLReader(std::string& file, std::shared_ptr<Utils
     try {
         feedfile.open(file);
         if(feedfile.fail())
-            throw feedreaderException::URLParsing("Cannot open file %s", file);
+            throw feedreaderException::URLParsing("Cannot open file %s", file.c_str());
         std::stringstream buffer;
         buffer << feedfile.rdbuf();
         std::string contents(buffer.str());

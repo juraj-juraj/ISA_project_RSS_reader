@@ -32,5 +32,15 @@ class URLParsing : public baseException
     using baseException::baseException;
 };
 
+class downloader : public baseException
+{
+    using baseException::baseException;
+};
+
+class xmlParser : public baseException
+{
+    using baseException::baseException;
+};
+
 }
 

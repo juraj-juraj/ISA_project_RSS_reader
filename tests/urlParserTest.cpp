@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <memory>
 #include <string>
 #include <iostream>
 
@@ -74,7 +75,7 @@ TEST(urlParser, testURLWithoutAnything)
     ASSERT_EQ(actualURL.protocol, "http");
     ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
     ASSERT_EQ(actualURL.port, "");
-    ASSERT_EQ(actualURL.path, "");
+    ASSERT_EQ(actualURL.path, "/");
     ASSERT_EQ(actualURL.options, "");
 }
 
@@ -108,7 +109,7 @@ TEST(urlParser, testURLWithoutPathWithOptions)
     ASSERT_EQ(actualURL.protocol, "http");
     ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
     ASSERT_EQ(actualURL.port, "");
-    ASSERT_EQ(actualURL.path, "");
+    ASSERT_EQ(actualURL.path, "/");
     ASSERT_EQ(actualURL.options, R"(?param=4;param2=fds/d)");
 }
 
@@ -119,7 +120,7 @@ TEST(urlParser, teskURLWithoutPathWithOptionsPort)
     ASSERT_EQ(actualURL.protocol, "http");
     ASSERT_EQ(actualURL.address, "www.fit.vutbr.cz");
     ASSERT_EQ(actualURL.port, "80");
-    ASSERT_EQ(actualURL.path, "");
+    ASSERT_EQ(actualURL.path, "/");
     ASSERT_EQ(actualURL.options, R"(?param=4;param2=fds/d)");
 }
 
