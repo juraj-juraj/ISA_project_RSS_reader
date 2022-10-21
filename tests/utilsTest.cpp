@@ -16,7 +16,7 @@ bool isNotSpace(char c)
 TEST(splitTest, testOKSPlit)
 {
     const std::string testInput = "location: value";
-    const retPair refValue = {"location", " value"};
+    const retPair refValue = {"location", "value"};
     auto actualValue = Utils::splitDelim(testInput, ':');
     ASSERT_EQ(actualValue.first, refValue.first);
     ASSERT_EQ(actualValue.second, refValue.second);
@@ -34,7 +34,7 @@ TEST(splitTest, testRightEmptySplit)
 TEST(splitTest, testLeftEmptySplit)
 {
     const std::string testInput = ": value";
-    const retPair refValue = {"", " value"};
+    const retPair refValue = {"", "value"};
     auto actualValue = Utils::splitDelim(testInput, ':');
     ASSERT_EQ(actualValue.first, refValue.first);
     ASSERT_EQ(actualValue.second, refValue.second);
@@ -43,7 +43,7 @@ TEST(splitTest, testLeftEmptySplit)
 TEST(splitTest, testNoDelimiter)
 {
     const std::string testInput = " value";
-    const retPair refValue = {" value", ""};
+    const retPair refValue = {"value", ""};
     auto actualValue = Utils::splitDelim(testInput, ':');
     ASSERT_EQ(actualValue.first, refValue.first);
     ASSERT_EQ(actualValue.second, refValue.second);
