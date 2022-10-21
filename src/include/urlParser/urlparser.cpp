@@ -7,32 +7,48 @@
 #include "urlparser.h"
 #include "utils/exceptions.h"
 
-// TODO poriesit vidirtelnost do vonka
-// zaistit aby pred .cz a podobne
-std::regex urlParser::txt_regex(R"(^((http)|(https))(\:\/\/)((www\.)?[a-zA-Z0-9\.\-\_]+[a-z]{1,18})(\:\d+)?(\/[^\ \t\?]*)?(\?\S+)?$)");
+
+std::regex urlConstants::txt_regex(R"(^(https?:\/\/)?([a-zA-Z0-9\.\-\_\#\%\$\@\!]+)(\:\d+)?(\/[^\ \t\?]*)?(\?\S*)?$)");
 
 void urlParser::parseURL(const std::string&  URL, struct URLAddress& address)
 {
-    std::string::const_iterator startURL = URL.begin();
-    std::string::const_iterator endURL = URL.end();
-    std::string::const_iterator endProtocol = std::find(startURL, endURL, ':');
-    std::string::const_iterator addressStart = endProtocol + 3; //skip ://
-    std::string::const_iterator addressEnd = std::find(addressStart, endURL, '/');
-    std::string::const_iterator optionsStart = std::find(addressStart, endURL, '?');
-    if(optionsStart < addressEnd)
-        addressEnd = optionsStart;
-    std::string::const_iterator portStart = std::find(addressStart, addressEnd, ':');
+    std::smatch urlMatch;
+    if(std::regex_search(URL, urlMatch, urlConstants::txt_regex))
+    {
+        for(size_t i = 0; i < urlMatch.size(); ++i)
+        {
+            urlParser::URLPart part{i};
+            std::string temp(urlMatch[i].first, urlMatch[i].second);
+            switch(part)
+            {
+                case urlParser::URLPart::whole:
+                    address.original = URL;
+                    break;
+                case URLPart::protocol:
+                    if(temp.empty())
+                        address.protocol = urlConstants::https;
+                    else
+                        address.protocol = std::move(temp);
+                    break;
+                case URLPart::domain:
+                    address.address = std::move(temp);
+                    break;
+                case URLPart::port:
+                    address.port = std::move(temp);
+                    break;
+                case URLPart::path:
+                    if(temp.empty())
+                        address.path = "/";
+                    else
+                        address.path = std::move(temp);
+                    break;
+                case URLPart::options:
+                    address.options = std::move(temp);
+                    break;
+            }
 
-    address.port = std::string((portStart!=addressEnd) ? portStart+1 : portStart, addressEnd);
-    address.path = std::string(addressEnd, optionsStart);
-    if(address.path.empty())
-        address.path = "/";
-    if(portStart != addressEnd)
-        addressEnd = std::find(addressStart, endURL, ':');
-    address.address = std::string(addressStart, addressEnd);
-    address.options = std::string(optionsStart, endURL);
-    address.protocol = std::string(startURL, endProtocol);
-    address.original = std::move(URL);
+        }
+    }
 }
 
 urlParser::URLParser::URLParser(std::string URL, std::string feedfile, std::shared_ptr<Utils::logger> logger)
@@ -64,7 +80,6 @@ urlParser::FileURLReader::FileURLReader(std::string& file, std::shared_ptr<Utils
         std::string::iterator endPos = contents.end();
         while(nextPos != endPos)
         {
-
             nextPos = std::find(actPos, endPos, '\n');
             if(nextPos == endPos)
                 break;
@@ -72,7 +87,7 @@ urlParser::FileURLReader::FileURLReader(std::string& file, std::shared_ptr<Utils
             actPos = nextPos + 1;
             if(temp.size() == 0 || temp.front() == '#')
                 continue;
-            if(std::regex_match(temp, txt_regex))
+            if(std::regex_match(temp, urlConstants::txt_regex))
                 mURLs.push_back(std::move(temp));
             else
                 mLogger->errWrite("Error: Submitted URL %s is not valid", temp.c_str());
@@ -97,7 +112,7 @@ bool urlParser::FileURLReader::next(struct URLAddress &address)
 
 urlParser::RawURLReader::RawURLReader(std::string &url, std::shared_ptr<Utils::logger> logger)
 {
-    if(!std::regex_match(url, txt_regex))
+    if(!std::regex_match(url, urlConstants::txt_regex))
         throw feedreaderException::URLParsing("Submitted URL %s is not valid", url.c_str());
     mURl = url;
     mLogger = logger;
