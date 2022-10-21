@@ -28,7 +28,7 @@ xmlParser::xmlNode findTag(xmlParser::xmlNode node, const std::string& value)
 
 void xmlParser::processor::parseAtom(xmlNode node)
 {
-    const char *storage;
+    const char *storage = "";
     std::map<std::string, std::string> tempMap;
     bool headTitle = false;
     do
@@ -80,11 +80,46 @@ void xmlParser::processor::parseAtom(xmlNode node)
 
 void xmlParser::processor::parseRss(xmlNode node)
 {
-
+    const char *storage = "";
+    std::map<std::string, std::string> tempMap;
+    bool headTitle = false;
+    node = node.getChild();
     do
     {
 
+        if(!headTitle && !strcmp(node.getName(), "title"))
+        {
+            mLogger->write("***%s***\n", node.getChild().getContent());
+            headTitle = true;
+        }
+        else if(!strcmp(node.getName(), "item"))
+        {
+            auto title = findTag(node.getChild(), "title");
+            if(title.getNode() != NULL)
+                storage = title.getChild().getContent();
+            mLogger->write("%s\n", storage);
+            if(mAuthorShow)
+            {
+                title = findTag(node.getChild(), "author");
+                if(title.getNode() != NULL)
+                    mLogger->write("Autor: %s\n", title.getChild().getContent());
+            }
+            if(mDateShow)
+            {
+                title = findTag(node.getChild(), "lastBuildDate");
+                if(title.getNode() == NULL)
+                    title = findTag(node.getChild(), "pubDate");
+                if(title.getNode() != NULL)
+                    mLogger->write("Aktualizace: %s\n", title.getChild().getContent());
+            }
+            if(mUrlShow)
+            {
+                title = findTag(node.getChild(), "link");
+                if(title.getNode() != NULL)
+                    mLogger->write("URL: %s\n", title.getChild().getContent());
+            }
+            if(mUrlShow || mDateShow || mAuthorShow)
+                mLogger->write("\n");
+        }
     }while(node.next());
-
-
 }

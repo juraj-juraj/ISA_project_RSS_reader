@@ -21,7 +21,8 @@ public:
 
   ~processor()
   {
-    xmlFreeDoc(mRootXml);
+    //xmlFreeDoc(mRootXml);
+    xmlCleanupGlobals();
     xmlCleanupParser();
   };
 

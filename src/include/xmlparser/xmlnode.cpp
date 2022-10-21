@@ -54,6 +54,9 @@ xmlParser::xmlBuilder::xmlBuilder(std::string &source)
         throw feedreaderException::xmlParser("Cannot parse feed");
 
     mNode = mRoot->children;
+    while(mNode->type == XML_PI_NODE)
+        mNode = mNode->next;
+
     if(!strcmp((char *)mNode->name, "feed"))
         mType = xmlParser::feedType::atom;
     else if(!strcmp((char *)mNode->name, "rss"))
