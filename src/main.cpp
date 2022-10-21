@@ -27,6 +27,8 @@ void handleFailure(int i){
 
 int main(int argc, const char *argv[])
 {
+    int retval = 1;
+    bool moreUrl = false;
     auto logger = std::make_shared<Utils::logger>(std::cout, std::cerr);
     ParameterParser::ParameterParser argParser;
     argParser.addValueParameter(FEEDFILE_ARG).isFile();
@@ -51,21 +53,24 @@ int main(int argc, const char *argv[])
 
         urlParser::URLParser urlGetter(argParser.getValue(URLPOS_ARG), argParser.getValue(FEEDFILE_ARG), logger);
         struct urlParser::URLAddress address;
-        feeddownloader::feedDownloader downloader;
+        feeddownloader::feedDownloader downloader(logger);
         downloader.setupCertificate(argParser.getValue(CERTDIR_ARG), argParser.getValue(CERTFILE_ARG));
         std::string xmlFeed;
         while(urlGetter.next(address))
         {
+            if(moreUrl)
+                logger->write("\n");
             xmlFeed = downloader.download(address);
             if(xmlFeed.empty())
             {
                 logger->errWrite("Cannot load feed from %s\n", address.original.c_str());
                 continue;
             }
-            feedParser.parseFeed(xmlFeed);
+            //feedParser.parseFeed(xmlFeed);
             //logger->write(xmlFeed);
+            moreUrl = true;
         }
-
+        retval = 0;
     }
     catch(const feedreaderException::URLParsing &err)
     {
@@ -269,5 +274,5 @@ int main(int argc, const char *argv[])
 //      SSL_CTX_free(ctx);
 
 
-    return 0;
+    return retval;
 }
