@@ -18,8 +18,8 @@ constexpr const char *HELP_MSG =
         "   -f                  Specify feedfile from which URL will be taken from\n"
         "   -c                  Specify certificate to use when checking server certificate\n"
         "   -C                  Specify directory with certificates\n"
-        "   -T                  Print date of lst change to item in feed\n"
+        "   -T                  Print date of last change to item in feed\n"
         "   -a                  Print author of item in feed\n"
         "   -u                  Print URL to item in feed\n"
         "\n"
-        "Usefull tool to download and parse feed in format RSS or atom\n";
+        "Useful tool to download and parse feed in format RSS or atom\n";
