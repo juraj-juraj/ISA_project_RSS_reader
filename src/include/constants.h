@@ -1,3 +1,8 @@
+/**
+ * @file constants.h
+ * all constants and help messages are stored here
+ **/
+
 #pragma once
 
 constexpr const char *FEEDFILE_ARG = "-f";

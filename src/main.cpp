@@ -1,3 +1,12 @@
+/**
+ * Project ISA
+ * RSS and Atom feedreader
+ *
+ * This application downloads and outputs data from given url or feedfile with urls
+ * @author Juraj Novosád xnovos13
+ * @mail xnovos13@stud.fir.vutbr.cz
+ **/
+
 #include <iostream>
 #include <fstream>
 #include <memory.h>
@@ -14,14 +23,10 @@
 #include "feed_downloader/feeddownloader.h"
 #include "xmlparser/xmlparser.h"
 
-void handleFailure(int i){
-    std::cout << "gone south: " << i << std::endl;
-}
 
 int main(int argc, const char *argv[])
 {
     int retval = 1;
-    bool moreUrl = false;
     auto logger = std::make_shared<Utils::logger>(std::cout, std::cerr);
     ParameterParser::ParameterParser argParser;
     argParser.addValueParameter(FEEDFILE_ARG).isFile();
@@ -51,11 +56,6 @@ int main(int argc, const char *argv[])
             return 0;
         }
 
-//        for(const auto& [key, value] : parsedValues)
-//        {
-//            logger->write("Key: %s | value: %s \n", key.c_str(), value.c_str());
-//        }
-
         urlParser::URLParser urlGetter(argParser.getValue(URLPOS_ARG), argParser.getValue(FEEDFILE_ARG), logger);
         struct urlParser::URLAddress address;
         feeddownloader::feedDownloader downloader(logger);
@@ -63,18 +63,14 @@ int main(int argc, const char *argv[])
         std::string xmlFeed;
         while(urlGetter.next(address))
         {
-//            if(moreUrl)
-//                logger->write("\n");
             xmlFeed = downloader.download(address);
             if(xmlFeed.empty())
             {
                 logger->errWrite("Cannot load feed from %s\n", address.original.c_str());
                 continue;
             }
-            //logger->write(xmlFeed);
             feedParser.parseFeed(xmlFeed);
 
-            moreUrl = true;
         }
         retval = 0;
     }

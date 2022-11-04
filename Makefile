@@ -17,5 +17,5 @@ zip:
 	tar -cvf $(NAME).tar $(FILES)
 
 clear:
-	rm feedreader
+	rm -f feedreader
 	rm -rf build/
