@@ -72,9 +72,9 @@ int main(int argc, const char *argv[])
                 logger->errWrite("Cannot load feed from %s\n", address.original.c_str());
                 continue;
             }
+            //logger->write(xmlFeed);
             feedParser.parseFeed(xmlFeed);
 
-            //logger->write(xmlFeed);
             moreUrl = true;
         }
         retval = 0;
@@ -86,17 +86,28 @@ int main(int argc, const char *argv[])
 
     catch(const feedreaderException::argumentParsing& err)
     {
-        logger->errWrite("Error parsing arguments: %s\n", err.what());
+        logger->errWrite("Error parsing arguments: %s\n\n", err.what());
+        logger->errWrite(HELP_MSG);
     }
     catch(const feedreaderException::downloader& err)
     {
         logger->errWrite("Error downloading feed: %s\n", err.what());
+    }
+    catch(const feedreaderException::xmlParser& err)
+    {
+        logger->errWrite("Error parsing downloaded feed: %s\n", err.what());
     }
 
     catch(...)
     {
         logger->errWrite("Unknown error raised \n");
     }
+
+
+
+
+
+
 
 //    int sockfd;
 //    struct addrinfo hints, *result, *p;

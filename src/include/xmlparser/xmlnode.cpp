@@ -46,12 +46,13 @@ const _xmlNode *xmlParser::xmlNode::getNode()
 
 
 
+
 xmlParser::xmlBuilder::xmlBuilder(std::string &source)
 {
     mType = xmlParser::feedType::undefined;
     mRoot = xmlReadMemory(source.c_str(), source.length(),NULL,"UTF-8",1);
-    if(mRoot == NULL)
-        throw feedreaderException::xmlParser("Cannot parse feed");
+    if(mRoot == NULL || mRoot->children == NULL)
+        throw feedreaderException::xmlParser("Feed is corrupted or is not suported format");
 
     mNode = mRoot->children;
     while(mNode->type == XML_PI_NODE)
