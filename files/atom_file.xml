@@ -1,0 +1,592 @@
+Key: URL | value: https://www.theregister.com/software/headlines.atom 
+HTTP/1.1 200 OK
+Date: Mon, 17 Oct 2022 20:23:26 GMT
+Content-Type: application/atom+xml
+Transfer-Encoding: chunked
+Connection: close
+Last-Modified: Mon, 17 Oct 2022 20:21:20 GMT
+Cache-Control: max-age=1800, s-maxage=90, public
+Expires: Mon, 17 Oct 2022 20:52:00 GMT
+Vary: Accept-Encoding
+X-Reg-BOFH: pfy01gb
+X-Clacks-Overhead: GNU Terry Pratchett, Lester Haines
+X-Content-Type-Options: nosniff
+CF-Cache-Status: HIT
+Age: 34
+Server: cloudflare
+CF-RAY: 75bbc0842c40b37d-PRG
+alt-svc: h3=":443"; ma=86400, h3-29=":443"; ma=86400
+
+7dc0
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>tag:theregister.com,2005:feed/theregister.com/software/</id>
+  <title>The Register - Software</title>
+  <link rel="self" type="application/atom+xml" href="https://www.theregister.com/software/headlines.atom"/>
+  <link rel="alternate" type="text/html" href="https://www.theregister.com/software/"/>
+  <rights>Copyright © 2022, Situation Publishing</rights>
+  <author>
+    <name>Team Register</name>
+    <email>webmaster@theregister.co.uk</email>
+    <uri>https://www.theregister.com/odds/about/contact/</uri>
+  </author>
+  <icon>https://www.theregister.com/Design/graphics/icons/favicon.png</icon>
+  <subtitle>Biting the hand that feeds IT — Enterprise Technology News and Analysis</subtitle>
+  <logo>https://www.theregister.com/Design/graphics/Reg_default/The_Register_r.png</logo>
+  <updated>2022-10-17T19:23:30Z</updated>
+  <entry>
+    <id>tag:theregister.com,2005:story224144</id>
+    <updated>2022-10-17T15:30:12Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/17/google_kata_os/"/>
+    <title type="html">Google reveals another experimental operating system: KataOS</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Based on Rust, on top of seL4 – a big deal in the microkernel world&lt;/h4&gt; &lt;p&gt;Google, one of very few tech companies willing to experiment with new operating systems, has unveiled KataOS for embedded machine learning devices.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224141</id>
+    <updated>2022-10-17T11:56:31Z</updated>
+    <author>
+      <name>Lindsay Clark</name>
+      <uri>https://search.theregister.com/?author=Lindsay%20Clark</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/17/vodafone_opts_to_move_sap/"/>
+    <title type="html">Vodafone to move SAP S/4HANA ERP system to Google Cloud</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Spare a thought for the techies hauling on-prem mega-platform of one of world's biggest mobile companies to the fluffy stuff&lt;/h4&gt; &lt;p&gt;Vodafone has announced it is migrating its SAP S/4HANA ERP platform from an on-premises installation to Google Cloud.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224027</id>
+    <updated>2022-10-17T08:59:10Z</updated>
+    <author>
+      <name>Elizabeth Coles</name>
+      <uri>https://search.theregister.com/?author=Elizabeth%20Coles</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/17/tripping_the_containerisation_light_fantastic/"/>
+    <title type="html">Tripping the Kubernetes light fantastic</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Dance through an enterprise containers deployment with ease&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Webinar&lt;/strong&gt;  Building choreography is often considered the most complex and complicated artistic task you can ever be asked to do. But deploying and managing an enterprise Kubernetes stack then fine tuning its performance can arguably be just as demanding.…&lt;/p&gt; &lt;p&gt;&lt;!--#include virtual='/data_centre/_whitepaper_textlinks_top.html' --&gt;&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224138</id>
+    <updated>2022-10-17T06:58:07Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.com/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/17/linux_6_1_rc1/"/>
+    <title type="html">Linus Torvalds to kernel devs: Grow up and stop pulling all-nighters just before deadline</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Release candidate one for Linux 6.1 has appeared&lt;/h4&gt; &lt;p&gt;Linux kernel boss Linus Torvalds has released the first release candidate for version 6.1 of the project and added an appeal for developers to make his life easier by adding code earlier in the development cycle.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224136</id>
+    <updated>2022-10-17T05:58:14Z</updated>
+    <author>
+      <name>Matthew JC Powell</name>
+      <uri>https://search.theregister.com/?author=Matthew%20JC%20Powell</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/17/who_me/"/>
+    <title type="html">Loathsome eighties ladder-climber levelled by a custom DOS prompt</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;This wasn't &lt;i&gt;WarGames&lt;/i&gt; – it was far more serious&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Who, Me?&lt;/strong&gt;  The working week is upon us again, so what better way to mark it than with another of &lt;em&gt;The Reg&lt;/em&gt;'s weekly tales of readers getting away with it after perhaps not having done their very best work.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224137</id>
+    <updated>2022-10-17T04:59:08Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.com/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/17/azure_hybrid_benefit_extension/"/>
+    <title type="html">Microsoft extends Azure Hybrid benefit to some on-prem software</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Azure Stack HCI and Azure Kubernetes Service can be free for Windows Server customers. Microsoft hopes that price will encourage you to stick around&lt;/h4&gt; &lt;p&gt;Microsoft last week extended its Azure Hybrid Benefit to some on-prem workloads.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224127</id>
+    <updated>2022-10-16T10:39:12Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.com/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/16/in-brief-ai/"/>
+    <title type="html">Weird robot breaks down in middle of House of Lords hearing on AI art</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Plus: Listen to Fake Joe Rogan interviewing Bogus Steve Jobs in bizarre podcast episode&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;In brief&lt;/strong&gt;  A freaky-looking humanoid robot wearing dungarees and named Ai-Da became the first machine to speak at a House of Lords committee hearing on AI art this week.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223855</id>
+    <updated>2022-10-15T08:56:06Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.com/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/15/would_you_pay_10_to/"/>
+    <title type="html">Just $10 to create an AI chatbot of a dead loved one</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;How software can help some grieve, perturb others&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Feature&lt;/strong&gt;  Death is inescapable. Everyone experiences grief at some point in their lives, whether it's when a relative, friend, or pet passes away.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224131</id>
+    <updated>2022-10-14T23:16:11Z</updated>
+    <author>
+      <name>Thomas Claburn</name>
+      <uri>https://search.theregister.com/?author=Thomas%20Claburn</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/14/dept_of_veterans_affairs_oracle_cerner/"/>
+    <title type="html">US Veterans Affairs hits brakes on $10b Oracle Cerner health record system</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Nothing like medical orders routed into /dev/null and other problems to hold up a roll out&lt;/h4&gt; &lt;p&gt;The US Department of Veterans Affairs (VA) this week announced it is delaying pending deployments of the Oracle Cerner electronic health record (EHR) system until June 2023 because of ongoing problems with the system.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224117</id>
+    <updated>2022-10-14T18:00:13Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/14/kernel_61_will_contain_fixes/"/>
+    <title type="html">Linux kernel 6.1 will contain fixes, features. Useful Rust modules? Not yet</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;But you get a super practical patch that prints CPU, core, and socket when you get a segfault&lt;/h4&gt; &lt;p&gt;The merge window for contributions to Linux 6.1 is still open and incoming features include Wi-Fi security fixes and hardware tests.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224103</id>
+    <updated>2022-10-14T11:03:09Z</updated>
+    <author>
+      <name>Steven J. Vaughan-Nichols</name>
+      <uri>https://search.theregister.com/?author=Steven%20J.%20Vaughan-Nichols</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/14/year_of_linux_desktop/"/>
+    <title type="html">Laugh all you want. There will be a year of the Linux desktop</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;But, it won't play out the way you think it will&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Opinion&lt;/strong&gt;  It has become a running joke. "20xx will be the year of the Linux desktop." The punchline is, of course, it will never happen. But the real jape is that there will soon be a year of the Linux desktop. It's just not going to happen the way Linux fanboi have believed it will.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224088</id>
+    <updated>2022-10-14T09:25:12Z</updated>
+    <author>
+      <name>Lindsay Clark</name>
+      <uri>https://search.theregister.com/?author=Lindsay%20Clark</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/14/dsag_sap_user_conference/"/>
+    <title type="html">SAP's German-speaking heartlands still struggling with ERP vendor's cloud vision</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;'Customers will not – at least not in the short term – move exclusively to cloud scenarios'&lt;/h4&gt; &lt;p&gt;SAP couldn't be clearer with its customers about the challenges they face in application upgrades and cloud migration, but for one reason or another they struggle to get the message. Or perhaps hope it will go away.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224107</id>
+    <updated>2022-10-14T04:03:05Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.com/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/14/trustable_internet_endorsement_layer/"/>
+    <title type="html">Fujitsu and Japanese Uni propose 'endorsement layer' to make the internet trustable</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Hope to combat misinformation with graph of observations that prove what you’re reading is reliable&lt;/h4&gt; &lt;p&gt;Fujitsu and Japan's Keio University have proposed adding an "endorsement layer" to the internet, to verify information and prevent the flow of fake news and disinformation.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224092</id>
+    <updated>2022-10-13T16:30:13Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/13/zinc_ubuntu_remix/"/>
+    <title type="html">Zinc: An Ubuntu remix that dares to be different</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Impressive distro is somewhere between a tech demo and a power user's tool&lt;/h4&gt; &lt;p&gt;While many Ubuntu remixes just switch the desktop or replace a few default apps, Zinc changes some of the fundamentals. The result is impressive.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224067</id>
+    <updated>2022-10-13T10:44:11Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/13/canonical_ubuntu_ad/"/>
+    <title type="html">Canonical displays controversial 'ad' in shell update prog</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Ubuntu once again courts controversy, but alternative commands are available&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Updated&lt;/strong&gt;  Some Ubuntu users are not happy at receiving a promotional message at the command line when upgrading their systems.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224079</id>
+    <updated>2022-10-13T06:31:13Z</updated>
+    <author>
+      <name>Laura Dobberstein</name>
+      <uri>https://search.theregister.com/?author=Laura%20Dobberstein</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/13/toshiba_expands_its_range_of/"/>
+    <title type="html">Want to crawl inside a nuke plant swinging a hammer? No? Toshiba's inspection bots will do it instead</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Go ahead, feel redundant: machines reduce maintenance time by 12 days and go places humans cannot&lt;/h4&gt; &lt;p&gt;On Wednesday Toshiba launched its commercialized robot inspection services for power plant turbine generators.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224074</id>
+    <updated>2022-10-13T01:10:11Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.com/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/13/ai_recruitment_software_diversity/"/>
+    <title type="html">AI recruitment software is 'automated pseudoscience', Cambridge study finds</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;HR diversity claims via software are rot, according to boffins&lt;/h4&gt; &lt;p&gt;Claims that AI-powered recruitment software can boost diversity of new hires at a workplace were debunked in a study published this week.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224065</id>
+    <updated>2022-10-12T18:45:14Z</updated>
+    <author>
+      <name>Lindsay Clark</name>
+      <uri>https://search.theregister.com/?author=Lindsay%20Clark</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/12/microsoft_oracle_migration_service/"/>
+    <title type="html">Microsoft attempts to eat Oracle's database lunch with Azure migration service</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Redmond hopes move will lure more to its PostgreSQL managed service&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Ignite&lt;/strong&gt;  Microsoft is launching a database migration tool to help Oracle users shift to a PostgreSQL managed service on Azure.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224059</id>
+    <updated>2022-10-12T14:30:14Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/12/tuxedo_computers_version_1/"/>
+    <title type="html">Tuxedo Computers releases version 1.0 of its Ubuntu remix</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;We spin up Linux PC vendor's first public version of its in-house OS&lt;/h4&gt; &lt;p&gt;Tuxedo OS 1 is Ubuntu 22.04, tweaked for the company's own kit, with KDE instead of GNOME, a natively packaged Firefox, and Flatpak instead of Snap.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224056</id>
+    <updated>2022-10-12T11:34:03Z</updated>
+    <author>
+      <name>Lindsay Clark</name>
+      <uri>https://search.theregister.com/?author=Lindsay%20Clark</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/12/oracle_cerner_outage_uk/"/>
+    <title type="html">UK hospitals fall back on pen and paper after Oracle Cerner outage</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Staff couldn't access patient records and paper stocks were running low&lt;/h4&gt; &lt;p&gt;Hospitals in the UK are recovering from an outage in their vital electronic health records system from Oracle Cerner which left doctors unable to access vital patient information.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224026</id>
+    <updated>2022-10-12T08:34:06Z</updated>
+    <author>
+      <name>Elizabeth Coles</name>
+      <uri>https://search.theregister.com/?author=Elizabeth%20Coles</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/12/a_perfect_kubernetes_combination/"/>
+    <title type="html">A perfect Kubernetes combination?</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;How Nutanix and Red Hat aim to remove the pain from container deployments&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Webinar&lt;/strong&gt;  Kubernetes has evolved into the 'go-to' container orchestration system for many organisations. And although that's an accolade in itself, it doesn't mean it's a straightforward thing to navigate and implement.…&lt;/p&gt; &lt;p&gt;&lt;!--#include virtual='/data_centre/_whitepaper_textlinks_top.html' --&gt;&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224046</id>
+    <updated>2022-10-11T23:13:33Z</updated>
+    <author>
+      <name>Tobias Mann</name>
+      <uri>https://search.theregister.com/?author=Tobias%20Mann</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/11/google_amazon_ai_chips_nvidia/"/>
+    <title type="html">Nvidia not cutting it? Google and Amazon’s latest AI chips have arrived</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Intel’s Sapphire Rapids CPUs and Mount Evans SmartNICs pop their heads above ground, too&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;GCN&lt;/strong&gt;  Cloud-based AI training got a little more diverse this week after Amazon Web Services (AWS) and Google Cloud announced the general availability of their latest custom AI accelerators.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224038</id>
+    <updated>2022-10-11T17:00:09Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/11/oracle_virtualbox_7/"/>
+    <title type="html">Oracle VirtualBox 7.0 is here – just watch out for the proprietary Extension Pack</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Latest version of FOSS hypervisor boasts support for new 3D acceleration tech and encrypted virtual machines&lt;/h4&gt; &lt;p&gt;VirtualBox 7.0 is the latest version of the FOSS hypervisor that Oracle acquired along with Sun Microsystems in 2009 – barely more than a year after Sun acquired VirtualBox's developer, Innovision.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224035</id>
+    <updated>2022-10-11T15:30:10Z</updated>
+    <author>
+      <name>Lindsay Clark</name>
+      <uri>https://search.theregister.com/?author=Lindsay%20Clark</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/11/google_bigquery/"/>
+    <title type="html">Structured data, unstructured data: It shouldn't matter, says Google</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Apache Spark comes to BigQuery while BigLake gets Iceberg support&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;GCN&lt;/strong&gt;  Google is promoting updates to its cloud-based data management portfolio with the ambition of bringing analysis of structured and unstructured data closer together.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224033</id>
+    <updated>2022-10-11T14:00:11Z</updated>
+    <author>
+      <name>Laura Dobberstein</name>
+      <uri>https://search.theregister.com/?author=Laura%20Dobberstein</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/11/samsung_ukraine_headquarters_missile/"/>
+    <title type="html">Samsung's Ukraine headquarters damaged by Russian missile strike</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;R&amp;amp;D Center focuses on autonomous AI, otherwise known as On-Device AI&lt;/h4&gt; &lt;p&gt;Samsung's Ukraine headquarters were damaged during a Russian attack on Kyiv that began Monday morning and which killed at least 14, injuring others.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224031</id>
+    <updated>2022-10-11T13:30:07Z</updated>
+    <author>
+      <name>Lindsay Clark</name>
+      <uri>https://search.theregister.com/?author=Lindsay%20Clark</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/11/dsag_sap_survey/"/>
+    <title type="html">SAP users see scattered clouds on the horizon</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;User group's views are at odds with the software giant's direction&lt;/h4&gt; &lt;p&gt;SAP users are putting more emphasis on on-premises solutions than the cloud when it comes to future workloads, according to a survey among the German-speaking SAP User Group (DSAG), which represents users in Germany, Austria, and Switzerland.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224028</id>
+    <updated>2022-10-11T11:28:07Z</updated>
+    <author>
+      <name>Richard Currie</name>
+      <uri>https://search.theregister.com/?author=Richard%20Currie</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/11/cars_not_self_driving/"/>
+    <title type="html">People still seem to think their fancy cars are fully self-driving</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;This is despite a history of assistive software being involved in crashes&lt;/h4&gt; &lt;p&gt;Despite years of headlines about driver assistance systems being involved in horrific car crashes, a study by the US-based Insurance Institute for Highway Safety (IIHS) suggests motorists continue to use their vehicles as though they are fully self-driving.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224004</id>
+    <updated>2022-10-11T08:30:07Z</updated>
+    <author>
+      <name>Lindsay Clark</name>
+      <uri>https://search.theregister.com/?author=Lindsay%20Clark</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/11/uk_hmrc_procurement/"/>
+    <title type="html">UK govt launches multibillion procurement for tax agency application services</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;First chunk of mega-frameworks go to market&lt;/h4&gt; &lt;p&gt;The UK government has kicked off procurement to modernize aging legacy applications used by the national tax collector, HMRC.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224023</id>
+    <updated>2022-10-11T06:32:09Z</updated>
+    <author>
+      <name>Laura Dobberstein</name>
+      <uri>https://search.theregister.com/?author=Laura%20Dobberstein</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/11/singapore_blockchain_cross_border_payments/"/>
+    <title type="html">Singapore suggests blockchain to speed cross-border payments</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Monetary Authority director calls current system 'not fit for 21st century'&lt;/h4&gt; &lt;p&gt;Monetary Authority of Singapore (MAS) managing director Ravi Menon said on Monday the solution to costly, slow and inefficient cross-border payments is the implementation of industry-led blockchain stablecoin transactions and multi-CBDC platforms.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223970</id>
+    <updated>2022-10-10T13:01:26Z</updated>
+    <author>
+      <name>Joseph Martins</name>
+      <uri>https://search.theregister.com/?author=Joseph%20Martins</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/10/solving_the_problem_of_disaster/"/>
+    <title type="html">Solving the problem of disaster recovery and performance at a global scale</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;How Amazon delivers multi-active, multi-region database replication for performance and availability&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Sponsored Feature&lt;/strong&gt;  We all rely on data to make sense of the present and make informative forecasts. But data itself can be extremely unpredictable. Scaling your database architecture is complex enough when you have a strategy stretching years ahead but real-world events can throw the best laid plans off course.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223954</id>
+    <updated>2022-10-10T11:33:11Z</updated>
+    <author>
+      <name>Paul Kunert</name>
+      <uri>https://search.theregister.com/?author=Paul%20Kunert</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/10/windows_11_adoption/"/>
+    <title type="html">More than 4 in 10 PCs still can't upgrade to Windows 11</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Research by Lansweeper shows Microsoft's stringent hardware requirements still at play&lt;/h4&gt; &lt;p&gt;Nearly 43 percent of millions of devices studied by asset management provider Lansweeper are unable to upgrade to Windows 11 due to the hardware requirements Microsoft set out for the operating system.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223999</id>
+    <updated>2022-10-10T03:59:30Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.com/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/10/vpshere_release_cadence_change/"/>
+    <title type="html">VMware acknowledges the wisdom of never buying version 1.0 of a product</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;To get you upgrading faster, vSphere will now be released for Initial Availability before reaching General Availability&lt;/h4&gt; &lt;p&gt;VMware has acknowledged what most IT pros have learned the hard way – never buy a first-generation product – with a revised release cadence for its flagship vSphere private cloud suite.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223995</id>
+    <updated>2022-10-08T18:01:07Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.com/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/08/in_brief_ai/"/>
+    <title type="html">Lab explores dystopian future of AI helping cops catch criminals</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Plus: US AI Bill of Rights, and a new framework to run models on AMD and Nvidia GPUs more flexibly&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;In brief&lt;/strong&gt;  America's Pacific Northwest National Laboratory is looking into how AI technologies can be used to create a "Digital Police Officer" or "D-PO" in the future.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223982</id>
+    <updated>2022-10-07T16:45:07Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/07/plop_boot_manager_boot_a/"/>
+    <title type="html">Plop. That's the sound of a boot manager booting PCs off media they can't start from</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;… Including virtual machines as well as physical ones&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Friday Freeware Fest&lt;/strong&gt;  Elmar Hanlhofer's &lt;a href="https://www.plop.at/en/bootmanagers.html" rel="nofollow"&gt;Plop Boot Managers&lt;/a&gt; are a small family of tiny tools to enable booting from media that a computer can't usually boot from.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223979</id>
+    <updated>2022-10-07T14:10:10Z</updated>
+    <author>
+      <name>Lindsay Clark</name>
+      <uri>https://search.theregister.com/?author=Lindsay%20Clark</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/07/fivetran_slated_for_dropping_sql/"/>
+    <title type="html">Fivetran slammed for dropping SQL support. CEO: 'Blame me for this'</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Ubiquitous database language support continued through third-party tool, users told&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Updated&lt;/strong&gt;  Fivetran, the automated data integration company once valued at $5.6 billion, has received a volley of criticism for ending direct support for ubiquitous data language SQL, leading to a frank &lt;em&gt;mea culpa&lt;/em&gt; from its CEO.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223963<
+31b8
+/id>
+    <updated>2022-10-07T08:38:47Z</updated>
+    <author>
+      <name>Thomas Claburn</name>
+      <uri>https://search.theregister.com/?author=Thomas%20Claburn</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/07/machine_learning_code_assistance/"/>
+    <title type="html">AI co-programmers perhaps won't spawn as many bugs as feared</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;They can't be any worse than some human developers&lt;/h4&gt; &lt;p&gt;Machine-learning models that power next-gen code-completion tools like GitHub Copilot can help software developers write more functional code, without making it less secure.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223967</id>
+    <updated>2022-10-07T04:02:12Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.com/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/07/amazon_halts_scout_delivery_bot/"/>
+    <title type="html">Amazon halts work on ‘Scout’ delivery-bot that delivered parcels no faster than humans</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Meanwhile in China, Alibaba runs 500 delivery-bots and they’ve delivered 10 million items to Easy Street&lt;/h4&gt; &lt;p&gt;E-commerce behemoth Amazon.com has stopped work on its “Scout” parcel delivery robots.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223951</id>
+    <updated>2022-10-06T18:32:08Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/06/ubuntu_pro_free/"/>
+    <title type="html">Canonical makes Ubuntu Pro free for up to five machines</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Kernel live-patching and a full decade of software updates&lt;/h4&gt; &lt;p&gt;Canonical has opened up its previously paid-for Ubuntu Pro update service. Now it's free of charge for up to five physical boxes.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223947</id>
+    <updated>2022-10-06T15:15:11Z</updated>
+    <author>
+      <name>Lindsay Clark</name>
+      <uri>https://search.theregister.com/?author=Lindsay%20Clark</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/06/deepmind_ai_matrix_multiplication_improvements/"/>
+    <title type="html">DeepMind uses matrix math to automate discovery of better matrix math techniques</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;How Meta, er, meta&lt;/h4&gt; &lt;p&gt;Google-owned DeepMind has applied reinforced learning techniques to the multiplication of mathematical matrices, beating some human-made algorithms that have lasted 50 years and working toward improvements in computer science.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223943</id>
+    <updated>2022-10-06T13:45:14Z</updated>
+    <author>
+      <name>Jude Karabus</name>
+      <uri>https://search.theregister.com/?author=Jude%20Karabus</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/06/windows_11_22h2/"/>
+    <title type="html">Microsoft warns: Windows 11 update breaks provisioning</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;And it wouldn't be a Redmond OS update without printing issues&lt;/h4&gt; &lt;p&gt;The Windows 11 2022 Update that Microsoft started rolling out in September is in its teething phase, with warnings of unexpected restarts and half-completed out of box setups for users when deploying on new devices.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223935</id>
+    <updated>2022-10-06T11:38:27Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.com/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/06/google_ai_imagen_video/"/>
+    <title type="html">Nuh-uh, Meta, we can do text-to-video AI, too, says Google</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Brace yourself for a weird future where everything is imagined by magic sand we taught how to think&lt;/h4&gt; &lt;p&gt;Hot on the heels of Meta's Make-A-Video, Google said on Wednesday it too has built an AI-powered text-to-video system. This one's called Imagen Video.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223934</id>
+    <updated>2022-10-06T07:22:07Z</updated>
+    <author>
+      <name>Katyanna Quach</name>
+      <uri>https://search.theregister.com/?author=Katyanna%20Quach</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/06/ai_retina_scan_health/"/>
+    <title type="html">AI eye-scanner can tell whether you'll croak it from a heart attack</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;If and when this hits the mainstream, who's going to trust their retinas to random models?&lt;/h4&gt; &lt;p&gt;AI algorithms can predict whether a patient is at risk of suffering a stroke, heart attack, or dying from heart disease just by studying images of their retinas, according to research out of England.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223940</id>
+    <updated>2022-10-06T06:30:11Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.com/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/06/splunk_cribl_lawsuit/"/>
+    <title type="html">Splunk alleges source code theft by former employee who started rival biz</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Cribl accused of terrible behaviour, horrible IP practices, responds saying accusations are risible&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Updated&lt;/strong&gt;  Data-crunching outfit Splunk has filed a lawsuit alleging that a former employee stole its source code and used it to start a rival company.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223938</id>
+    <updated>2022-10-06T04:32:07Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.com/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/06/openstack_zed_slurp/"/>
+    <title type="html">OpenStack ends requirement for six-monthly upgrades with ‘SLURP’ plan</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;As version ‘Zed’ debuts, project slows down a little&lt;/h4&gt; &lt;p&gt;OpenStack has completed an alphabet’s worthy of releases, with the project on Wednesday issuing “Zed” – the 26th version of the open-source cloud stack and also adding an optional slower upgrade cadence.…&lt;/p&gt; &lt;p&gt;&lt;!--#include virtual='/data_centre/_whitepaper_textlinks_top.html' --&gt;&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223929</id>
+    <updated>2022-10-05T18:45:06Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/05/suse_alp_v001/"/>
+    <title type="html">SUSE wheels out first public prototype of its server Linux distro, asks for feedback</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Adaptable Linux Platform v0.01 shows that the future of SLE is containerized&lt;/h4&gt; &lt;p&gt;As we &lt;a href="https://www.theregister.com/2022/07/26/suse_adaptable_linux_platform/"&gt;reported back in July&lt;/a&gt;, the future direction of SUSE Linux Enterprise is starting to take shape, and it's containers all the way down.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223923</id>
+    <updated>2022-10-05T15:02:15Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/05/rust_kernel_pull_request_pulled/"/>
+    <title type="html">Linux 6.1: Rust to hit mainline kernel</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;New language will be official, probably within a couple of months&lt;/h4&gt; &lt;p&gt;The first big change for the forthcoming Linux kernel 6.1 is in… and it's a big one.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223896</id>
+    <updated>2022-10-05T10:29:10Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/05/icewm_version_3/"/>
+    <title type="html">IceWM reaches version 3 after a mere 25 years</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;And it's not the only venerable window manager still in development&lt;/h4&gt; &lt;p&gt;A new version of a quarter-century-old window manager shows that there's still room for improvement and innovation, even in established, mature tools.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223912</id>
+    <updated>2022-10-05T04:31:10Z</updated>
+    <author>
+      <name>Simon Sharwood</name>
+      <uri>https://search.theregister.com/?author=Simon%20Sharwood</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/05/videolan_letter_to_india/"/>
+    <title type="html">VideoLAN to India: If you love FOSS so much, why have you blocked our downloads?</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Activists help pen letter to New Delhi demanding answers&lt;/h4&gt; &lt;p&gt;Developers of the open source VideoLAN media player have challenged India’s government to explain why the project’s website has been blocked.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223885</id>
+    <updated>2022-10-04T11:32:15Z</updated>
+    <author>
+      <name>Thomas Claburn</name>
+      <uri>https://search.theregister.com/?author=Thomas%20Claburn</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/04/metas_facebook_webview_chromium/"/>
+    <title type="html">Don't mind Facebook, just putting its own browser in its Android app</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Totally not for data collection&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Analysis&lt;/strong&gt;  Meta's Facebook has been testing its own custom-browser engine within its Android app and plans to distribute the code more widely, ostensibly for the sake of better security and an improved user experience.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story223864</id>
+    <updated>2022-10-04T09:33:12Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/04/you_cannot_buy_software/"/>
+    <title type="html">You thought you bought software – all you bought was a lie</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Isn't code something worth paying for? Well, frankly, no&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Comment&lt;/strong&gt;  At the heart of the computer industry are some very big lies, and some of them are especially iniquitous. One is about commercial software.…&lt;/p&gt;</summary>
+  </entry>
+</feed>
+
+0
+

@@ -1,0 +1,8 @@
+# FIT
+http://www.fit.vutbr.cz/news/news-rss.php
+#Wikipedia
+https://en.wikipedia.org/w/api.dsphp?hidebots=1&days=7&limit=50&hidewikidata=1&action=feedrecentchanges&feedformat=atom
+https://en.wikipedia.org/w/api.php?hidebots=1&days=7&limit=50&hidewikidata=1&action=feedrecentchanges&feedformat=atom
+
+#The register
+
