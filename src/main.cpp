@@ -25,6 +25,17 @@ void handleFailure(int i){
     std::cout << "gone south: " << i << std::endl;
 }
 
+std::string getFileFeed(const std::string& filename)
+{
+    std::stringstream buffer;
+    std::ifstream feedfile;
+    feedfile.open(filename);
+    if(feedfile.fail())
+        throw feedreaderException::downloader("cannot open file: %s", filename);
+    buffer << feedfile.rdbuf();
+    return buffer.str();
+}
+
 int main(int argc, const char *argv[])
 {
     int retval = 1;
@@ -38,6 +49,7 @@ int main(int argc, const char *argv[])
     argParser.addPositionalParameter(URLPOS_ARG, 0);
     argParser.addValueParameter(CERTFILE_ARG).isFile();
     argParser.addValueParameter(CERTDIR_ARG).isDirectory();
+    argParser.addValueParameter(TEST_FILE).isFile();
     argParser.addParameter(HELP_ARG);
 
     try
@@ -51,6 +63,11 @@ int main(int argc, const char *argv[])
         }
 
         xmlParser::processor feedParser(argParser.argParsed(AUTHOR_ARG), argParser.argParsed(DATESHOW_ARG), argParser.argParsed(URLSHOW_ARG), logger);
+        if(argParser.argParsed(TEST_FILE))
+        {
+            feedParser.parseFeed(getFileFeed(argParser.getValue(TEST_FILE)));
+            return 0;
+        }
 
 //        for(const auto& [key, value] : parsedValues)
 //        {
@@ -64,8 +81,8 @@ int main(int argc, const char *argv[])
         std::string xmlFeed;
         while(urlGetter.next(address))
         {
-            if(moreUrl)
-                logger->write("\n");
+//            if(moreUrl)
+//                logger->write("\n");
             xmlFeed = downloader.download(address);
             if(xmlFeed.empty())
             {
@@ -91,11 +108,11 @@ int main(int argc, const char *argv[])
     }
     catch(const feedreaderException::downloader& err)
     {
-        logger->errWrite("Error downloading feed: %s\n", err.what());
+        logger->errWrite("Error fetching feed: %s\n", err.what());
     }
     catch(const feedreaderException::xmlParser& err)
     {
-        logger->errWrite("Error parsing downloaded feed: %s\n", err.what());
+        logger->errWrite("Error parsing fetched feed: %s\n", err.what());
     }
 
     catch(...)

@@ -7,6 +7,7 @@ constexpr const char *DATESHOW_ARG = "-T";
 constexpr const char *AUTHOR_ARG = "-a";
 constexpr const char *URLSHOW_ARG = "-u";
 constexpr const char *URLPOS_ARG = "URL";
+constexpr const char *TEST_FILE = "-k";
 constexpr const char *HELP_ARG = "-h";
 
 constexpr const char *HELP_MSG =
@@ -21,5 +22,6 @@ constexpr const char *HELP_MSG =
         "   -T                  Print date of last change to item in feed\n"
         "   -a                  Print author of item in feed\n"
         "   -u                  Print URL to item in feed\n"
+        "   -k                  Load feed from submitted file\n"
         "\n"
         "Useful tool to download and parse feed in format RSS or atom\n";
