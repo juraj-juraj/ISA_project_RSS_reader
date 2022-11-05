@@ -1,0 +1,13 @@
+***The Register - Software***
+The only Windows 10 updates for the year are coming. Spoiler alert: It's just security
+Autor: Jeff Burt
+
+FOSS digital audio workstation Ardour reaches version 7
+Autor: Liam Proven
+
+Microsoft attempts to eat Oracle's database lunch with Azure migration service
+Autor: Lindsay Clark
+
+Oracle VirtualBox 7.0 is here – just watch out for the proprietary Extension Pack
+Autor: Liam Proven
+

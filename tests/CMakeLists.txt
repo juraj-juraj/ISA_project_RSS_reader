@@ -51,3 +51,5 @@ add_test(NAME urlParserGTest COMMAND "${CMAKE_BINARY_DIR}/urlParserTest")
 add_test(NAME utilsGTest COMMAND "${CMAKE_BINARY_DIR}/utilsTest")
 add_test(NAME feedDownloaderGTest COMMAND "${CMAKE_BINARY_DIR}/feedDownloaderTest")
 
+add_test(NAME integration_tests COMMAND "${CMAKE_SOURCE_DIR}/tests/integration_tests.sh" "${CMAKE_BINARY_DIR}/feedreader" "${CMAKE_SOURCE_DIR}/tests")
+

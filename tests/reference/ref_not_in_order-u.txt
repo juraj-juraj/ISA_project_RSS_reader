@@ -1,0 +1,10 @@
+***Main title***
+sample title 1
+URL: http://not_exists.org/2008/
+
+Sample title 2
+URL: http://not_exists.org/atom
+
+Sample title 3
+URL: http://not_exists.org/atom02
+
