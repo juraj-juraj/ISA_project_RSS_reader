@@ -47,7 +47,7 @@ const _xmlNode *xmlParser::xmlNode::getNode()
 
 
 
-xmlParser::xmlBuilder::xmlBuilder(std::string &source)
+xmlParser::xmlBuilder::xmlBuilder(const std::string &source)
 {
     mType = xmlParser::feedType::undefined;
     mRoot = xmlReadMemory(source.c_str(), source.length(),NULL,"UTF-8",1);
