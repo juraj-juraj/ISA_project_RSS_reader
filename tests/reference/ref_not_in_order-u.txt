@@ -1,4 +1,4 @@
-***Main title***
+*** Main title ***
 sample title 1
 URL: http://not_exists.org/2008/
 
