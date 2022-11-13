@@ -40,7 +40,7 @@ void xmlParser::processor::parseAtom(xmlNode node)
 
     auto title = findTag(node, "title");
     if(title.getNode() != NULL)
-        mLogger->write("***%s***\n", title.getChild().getContent());
+        mLogger->write("*** %s ***\n", title.getChild().getContent());
     title = findTag(node, "author");
     if(title.getNode() != NULL)
     {
@@ -108,7 +108,7 @@ void xmlParser::processor::parseRss(xmlNode node)
 
         if(!headTitle && !strcmp(node.getName(), "title"))
         {
-            mLogger->write("***%s***\n", node.getChild().getContent());
+            mLogger->write("*** %s ***\n", node.getChild().getContent());
             headTitle = true;
         }
         else if(!strcmp(node.getName(), "item"))
