@@ -43,7 +43,7 @@ std::string& feeddownloader::feedDownloader::download(urlParser::URLAddress &add
         return mBuffer;
     auto startHeaderI = Utils::findIt(mBuffer, "\n");
     auto returnCode = getReturnCode(std::string(mBuffer.begin(), startHeaderI));
-    auto endHeaderI = Utils::findIt(mBuffer, "\n\n");
+    auto endHeaderI = Utils::findIt(mBuffer, "\r\n\r\n");
     auto params = parseResponseHeader(std::string(startHeaderI+1, endHeaderI));
 
     if(returnCode >= 400)
@@ -54,11 +54,12 @@ std::string& feeddownloader::feedDownloader::download(urlParser::URLAddress &add
         return feeddownloader::feedDownloader::download(address);
     }
 
-    mBuffer = std::string(endHeaderI + 2, mBuffer.end());
+    mBuffer = std::string(endHeaderI + 4, mBuffer.end());
     if(params.count("transfer-encoding") && params.at("transfer-encoding") == "chunked")
     {
         mBuffer = removeChunks(mBuffer);
     }
+    Utils::toLinuxEndline(mBuffer);
     return mBuffer;
 }
 
@@ -85,9 +86,9 @@ std::string feeddownloader::feedDownloader::removeChunks(const std::string &body
     auto it = body.begin();
     for(size_t chunkSize = std::stoul(body, &nextIndex, 16); chunkSize != 0; chunkSize = std::stoul(std::string(it, body.end()), &nextIndex, 16))
     {
-        it += nextIndex;
+        it += nextIndex + 1;
         ss << std::string(it + 1, it + chunkSize + 1);
-        it += chunkSize + 2;
+        it += chunkSize + 3;
     }
     return ss.str();
 }
@@ -221,7 +222,6 @@ void feeddownloader::feedDownloader::readFromBio(BIO *web)
         mBuffer.append(buff, len);
 
     } while(len > 0 || BIO_should_retry(web));
-    Utils::toLinuxEndline(mBuffer);
 }
 
 std::string feeddownloader::getFileFeed(const std::string &filename)
