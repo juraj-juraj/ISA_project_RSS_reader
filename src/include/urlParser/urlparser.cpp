@@ -90,7 +90,7 @@ urlParser::FileURLReader::FileURLReader(std::string& file, std::shared_ptr<Utils
             if(std::regex_match(temp, urlConstants::txt_regex))
                 mURLs.push_back(std::move(temp));
             else
-                mLogger->errWrite("Error: Submitted URL %s is not valid", temp.c_str());
+                mLogger->errWrite("Error: Submitted URL %s is not valid\n", temp.c_str());
         }
         mURLiterator = mURLs.begin();
     }
@@ -113,7 +113,7 @@ bool urlParser::FileURLReader::next(struct URLAddress &address)
 urlParser::RawURLReader::RawURLReader(std::string &url, std::shared_ptr<Utils::logger> logger)
 {
     if(!std::regex_match(url, urlConstants::txt_regex))
-        throw feedreaderException::URLParsing("Submitted URL %s is not valid", url.c_str());
+        throw feedreaderException::URLParsing("Submitted URL %s is not valid\n", url.c_str());
     mURl = url;
     mLogger = logger;
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include "feeddownloader.h"
 #include "utils/exceptions.h"
@@ -38,6 +39,8 @@ std::string& feeddownloader::feedDownloader::download(urlParser::URLAddress &add
     else
         this->httpsDownload(address);
 
+    if(mBuffer.empty())
+        return mBuffer;
     auto startHeaderI = Utils::findIt(mBuffer, "\n");
     auto returnCode = getReturnCode(std::string(mBuffer.begin(), startHeaderI));
     auto endHeaderI = Utils::findIt(mBuffer, "\n\n");
@@ -219,4 +222,15 @@ void feeddownloader::feedDownloader::readFromBio(BIO *web)
 
     } while(len > 0 || BIO_should_retry(web));
     Utils::toLinuxEndline(mBuffer);
+}
+
+std::string feeddownloader::getFileFeed(const std::string &filename)
+{
+    std::stringstream buffer;
+    std::ifstream feedfile;
+    feedfile.open(filename);
+    if(feedfile.fail())
+        throw feedreaderException::downloader("cannot open file: %s", filename);
+    buffer << feedfile.rdbuf();
+    return buffer.str();
 }

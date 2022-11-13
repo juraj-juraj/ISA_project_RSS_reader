@@ -24,6 +24,15 @@ namespace _downloaderconsts
 namespace feeddownloader
 {
 
+//void feed_openssl_clean(){
+//    ERR_free_strings();
+//    EVP_cleanup();
+//    CRYPTO_cleanup_all_ex_data();
+//    ERR_remove_state(0);
+//    EVP_PBE_cleanup();
+//    sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
+//};
+
 class feedDownloader
 {
 public:
@@ -36,6 +45,15 @@ public:
         SSL_CTX_free(mCtx);
         if(mWeb != NULL)
             BIO_free_all(mWeb);
+
+        #if OPENSSL_VERSION_NUMBER < 0x10100000L
+            ERR_free_strings();
+            EVP_cleanup();
+            CRYPTO_cleanup_all_ex_data();
+            ERR_remove_state(0);
+            EVP_PBE_cleanup();
+            sk_SSL_COMP_free(SSL_COMP_get_compression_methods());
+        #endif
     }
 
     std::string& download(struct urlParser::URLAddress& address);
@@ -63,5 +81,7 @@ private:
     std::shared_ptr<Utils::logger> mLogger;
     constexpr static const char* const mPREFERRED_CIPHERS = "HIGH:!aNULL:!kRSA:!PSK:!SRP:!MD5:!RC4";
 };
+
+std::string getFileFeed(const std::string& filename);
 
 }
