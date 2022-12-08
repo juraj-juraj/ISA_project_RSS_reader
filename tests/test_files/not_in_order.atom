@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <link href="http://www.not_exist.org/"/>
+  <updated>2005-12-13T17:30:01Z</updated>
+  <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
+
+  <entry>
+    <title>sample title 1</title>
+    <link href="http://not_exists.org/2008/"/>
+    <id>urn:uuid:1225c695-cfb8-4ebb-dhha-45344efa6a</id>
+    <updated>2005-12-13T17:30:01Z</updated>
+    <summary>Text line</summary>
+  </entry>
+    <title>Main title</title>
+  <entry>
+    <title>Sample title 2</title>
+    <link href="http://not_exists.org/atom"/>
+    <updated>2005-12-13T17:30:01Z</updated>
+    <summary>Text line</summary>
+    <author>
+      <name>Joe Stadion</name>
+    </author>
+  </entry>
+  <author>
+    <name>Main author</name>
+  </author>
+  <entry>
+    <title>Sample title 3</title>
+    <link href="http://not_exists.org/atom02"/>
+    <updated>2010-12-13T17:30:01Z</updated>
+    <summary>Text line</summary>
+    <author>
+      <name>Peter Griffin</name>
+    </author>
+  </entry>
+</feed>

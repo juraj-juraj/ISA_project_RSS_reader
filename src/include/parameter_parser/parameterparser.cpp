@@ -31,6 +31,8 @@ ParameterParser::PositionalParserSetup ParameterParser::ParameterParser::addPosi
 
 void ParameterParser::ParameterParser::parse(int argc,const char *argv[])
 {
+    if(argv == NULL)
+        return;
     std::vector<std::string> arguments(argv + 1, argv + argc);
     degroup(arguments);
 

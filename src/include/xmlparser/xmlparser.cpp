@@ -4,7 +4,9 @@
 
 #include <cstring>
 
-void xmlParser::processor::parseFeed(std::string &feed)
+//TODO otestovate feedfile
+
+void xmlParser::processor::parseFeed(const std::string &feed)
 {
     xmlParser::xmlBuilder builder(feed);
     auto root = builder.getRoot();
@@ -34,20 +36,29 @@ void xmlParser::processor::parseAtom(xmlNode node)
 {
     const char *storage = "";
     std::map<std::string, std::string> tempMap;
-    bool headTitle = false;
+    std::string defaultAuthor = "";
+
+    auto title = findTag(node, "title");
+    if(title.getNode() != NULL)
+        mLogger->write("*** %s ***\n", title.getChild().getContent());
+    title = findTag(node, "author");
+    if(title.getNode() != NULL)
+    {
+        title = findTag(title.getChild(), "name");
+        if(title.getNode() != NULL)
+        defaultAuthor = title.getChild().getContent();
+    }
+
     do
     {
-        if(!headTitle && !strcmp(node.getName(), "title"))
-        {
-            mLogger->write("***%s***\n", node.getChild().getContent());
-            headTitle = true;
-        }
         if(!strcmp(node.getName(), "entry"))
         {
-            auto title = findTag(node.getChild(), "title");
+            title = findTag(node.getChild(), "title");
             if(title.getNode() != NULL)
+            {
                 storage = title.getChild().getContent();
-            mLogger->write("%s\n", storage);
+                mLogger->write("%s\n", storage);
+            }
             if(mDateShow)
             {
                 title = findTag(node.getChild(), "updated");
@@ -65,6 +76,8 @@ void xmlParser::processor::parseAtom(xmlNode node)
                         mLogger->write("Autor: %s\n", title.getChild().getContent());
                     }
                 }
+                else if(!defaultAuthor.empty())
+                    mLogger->write("Autor: %s\n", defaultAuthor.c_str());
             }
             if(mUrlShow)
             {
@@ -80,6 +93,8 @@ void xmlParser::processor::parseAtom(xmlNode node)
                 mLogger->write("\n");
         }
     }while(node.next());
+    if(!(mUrlShow || mDateShow || mAuthorShow))
+        mLogger->write("\n");
 }
 
 void xmlParser::processor::parseRss(xmlNode node)
@@ -93,15 +108,17 @@ void xmlParser::processor::parseRss(xmlNode node)
 
         if(!headTitle && !strcmp(node.getName(), "title"))
         {
-            mLogger->write("***%s***\n", node.getChild().getContent());
+            mLogger->write("*** %s ***\n", node.getChild().getContent());
             headTitle = true;
         }
         else if(!strcmp(node.getName(), "item"))
         {
             auto title = findTag(node.getChild(), "title");
             if(title.getNode() != NULL)
+            {
                 storage = title.getChild().getContent();
-            mLogger->write("%s\n", storage);
+                mLogger->write("%s\n", storage);
+            }
             if(mDateShow)
             {
                 title = findTag(node.getChild(), "lastBuildDate");
@@ -126,4 +143,6 @@ void xmlParser::processor::parseRss(xmlNode node)
                 mLogger->write("\n");
         }
     }while(node.next());
+    if(!(mUrlShow || mDateShow || mAuthorShow))
+        mLogger->write("\n");
 }

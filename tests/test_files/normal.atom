@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <id>tag:theregister.com,2005:feed/theregister.com/software/</id>
+  <title>The Register - Software</title>
+  <link rel="self" type="application/atom+xml" href="https://www.theregister.com/software/headlines.atom"/>
+  <link rel="alternate" type="text/html" href="https://www.theregister.com/software/"/>
+  <rights>Copyright © 2022, Situation Publishing</rights>
+  <author>
+    <name>Team Register</name>
+    <email>webmaster@theregister.co.uk</email>
+    <uri>https://www.theregister.com/odds/about/contact/</uri>
+  </author>
+  <icon>https://www.theregister.com/Design/graphics/icons/favicon.png</icon>
+  <subtitle>Biting the hand that feeds IT — Enterprise Technology News and Analysis</subtitle>
+  <logo>https://www.theregister.com/Design/graphics/Reg_default/The_Register_r.png</logo>
+  <updated>2022-10-19T19:45:12Z</updated>
+  <entry>
+    <id>tag:theregister.com,2005:story224213</id>
+    <updated>2022-10-19T19:45:12Z</updated>
+    <author>
+      <name>Jeff Burt</name>
+      <uri>https://search.theregister.com/?author=Jeff%20Burt</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/19/microsoft_updates_windows_10/"/>
+    <title type="html">The only Windows 10 updates for the year are coming. Spoiler alert: It's just security</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;What did you expect, HoloLens-ready Minesweeper and new skins for Calculator?&lt;/h4&gt; &lt;p&gt;Microsoft is rolling out the only feature updates this year for Windows 10, with the IT giant describing it as a "scoped and streamlined" effort with a strong focus on security.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224153</id>
+    <updated>2022-10-18T16:00:09Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/18/foss_digital_audio_workstation_ardour/"/>
+    <title type="html">FOSS digital audio workstation Ardour reaches version 7</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;An open source rival to Ableton&lt;/h4&gt; &lt;p&gt;Ardour, a free multi-platform digital audio workstation (DAW), has released version 7.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224065</id>
+    <updated>2022-10-12T18:45:14Z</updated>
+    <author>
+      <name>Lindsay Clark</name>
+      <uri>https://search.theregister.com/?author=Lindsay%20Clark</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/12/microsoft_oracle_migration_service/"/>
+    <title type="html">Microsoft attempts to eat Oracle's database lunch with Azure migration service</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Redmond hopes move will lure more to its PostgreSQL managed service&lt;/h4&gt; &lt;p&gt;&lt;strong&gt;Ignite&lt;/strong&gt;  Microsoft is launching a database migration tool to help Oracle users shift to a PostgreSQL managed service on Azure.…&lt;/p&gt;</summary>
+  </entry>
+  <entry>
+    <id>tag:theregister.com,2005:story224038</id>
+    <updated>2022-10-11T17:00:09Z</updated>
+    <author>
+      <name>Liam Proven</name>
+      <uri>https://search.theregister.com/?author=Liam%20Proven</uri>
+    </author>
+    <link rel="alternate" type="text/html" href="https://go.theregister.com/feed/www.theregister.com/2022/10/11/oracle_virtualbox_7/"/>
+    <title type="html">Oracle VirtualBox 7.0 is here – just watch out for the proprietary Extension Pack</title>
+    <summary type="html" xml:base="https://www.theregister.com/">&lt;h4&gt;Latest version of FOSS hypervisor boasts support for new 3D acceleration tech and encrypted virtual machines&lt;/h4&gt; &lt;p&gt;VirtualBox 7.0 is the latest version of the FOSS hypervisor that Oracle acquired along with Sun Microsystems in 2009 – barely more than a year after Sun acquired VirtualBox's developer, Innovision.…&lt;/p&gt;</summary>
+  </entry>
+</feed>

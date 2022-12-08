@@ -34,7 +34,7 @@ enum feedType
 class xmlBuilder
 {
 public:
-    xmlBuilder(std::string& source);
+    xmlBuilder(const std::string& source);
 
     xmlParser::xmlNode getNode();
 

@@ -17,7 +17,7 @@ public:
       mUrlShow(urlShow),
       mLogger(logger){};
 
-  void parseFeed(std::string& feed);
+  void parseFeed(const std::string& feed);
 
 private:
     void parseAtom(xmlParser::xmlNode node);

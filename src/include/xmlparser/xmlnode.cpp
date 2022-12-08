@@ -46,12 +46,13 @@ const _xmlNode *xmlParser::xmlNode::getNode()
 
 
 
-xmlParser::xmlBuilder::xmlBuilder(std::string &source)
+
+xmlParser::xmlBuilder::xmlBuilder(const std::string &source)
 {
     mType = xmlParser::feedType::undefined;
-    mRoot = xmlReadMemory(source.c_str(), source.length(),NULL,"UTF-8",1);
-    if(mRoot == NULL)
-        throw feedreaderException::xmlParser("Cannot parse feed");
+    mRoot = xmlReadMemory(source.c_str(), source.length(),NULL,"UTF-8", XML_PARSE_NOERROR | XML_PARSE_NOWARNING);
+    if(mRoot == NULL || mRoot->children == NULL)
+        return;
 
     mNode = mRoot->children;
     while(mNode->type == XML_PI_NODE)
@@ -61,6 +62,8 @@ xmlParser::xmlBuilder::xmlBuilder(std::string &source)
         mType = xmlParser::feedType::atom;
     else if(!strcmp((char *)mNode->name, "rss"))
         mType = xmlParser::feedType::rss;
+    else
+        return;
     mNode = mNode->children;
     mNode = mNode->next;
 }

@@ -1,0 +1,16 @@
+*** Main title ***
+sample title 1
+Aktualizace: 2005-12-13T17:30:01Z
+Autor: Main author
+URL: http://not_exists.org/2008/
+
+Sample title 2
+Aktualizace: 2005-12-13T17:30:01Z
+Autor: Joe Stadion
+URL: http://not_exists.org/atom
+
+Sample title 3
+Aktualizace: 2010-12-13T17:30:01Z
+Autor: Peter Griffin
+URL: http://not_exists.org/atom02
+
